@@ -1,0 +1,8 @@
+- Validation when saving form in admin
+- I18N
+- provide a sample
+- validators
+- make errorMessage more easy to use
+- wedgit parameters without json
+- store form values
+
