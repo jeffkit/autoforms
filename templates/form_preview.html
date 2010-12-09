@@ -1,0 +1,52 @@
+{%extends 'admin/base_site.html'%}
+	<script type="text/javascript">window.__admin_media_prefix__ = "/media/";</script></script>
+	{%block extrastyle%}
+	{{block.super}}
+	<link rel="stylesheet" type="text/css" href="/media/css/forms.css" />
+    <script type="text/javascript" src="{%url autoforms.views.jsi18n%}"></script>    
+	<script type="text/javascript" src="/media/js/core.js"></script></script></script>
+	{{form.media}}
+	{%endblock%}
+	{%block title%}Auto form preview{%endblock%}
+{%block content%}
+	{%if forms%}
+	<h1>Choice a form for preview</h1>
+	<form action="" method="GET">
+	<select id="" name="id">
+	  <option value="">------</option>
+	  {%for f in forms%}
+	  <option value="{{f.id}}">{{f.name}}</option>
+	  {%endfor%}
+	</select>
+	<input type="submit" value="preview"/>
+	</form>
+	{%else%}
+	<h1>{{dform.name}}</h1>
+	  {%if edit%}
+      <form method="POST" action="{%url autoforms.views.form_preview%}{{id}}/">
+		 {{form.as_p}}
+		 <input type="submit" value="submit"/>
+         <a href="{%url autoforms.views.form_preview%}">Back</a>
+		</form>
+	  {%else%}
+	  <p>Data of The form you submited "{{dform.name}}" are show as bellow:</p>
+	  <table>
+		<thead>
+		  <tr>
+		  	<th>name</th>
+		  	<th>value</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{%for key,value in form.cleaned_data.items%}
+			<tr>
+			  <td>{{key}}</td>
+			  <td>{{value}}</td>
+			</tr>
+			{%endfor%}
+		</tbody>
+	  </table>
+      <a href="{%url autoforms.views.form_preview%}">Back</a>
+	  {%endif%}
+	{%endif%}
+{%endblock%}
