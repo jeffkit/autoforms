@@ -2,6 +2,9 @@
 from django.db import models
 from django import forms
 from django.contrib.contenttypes.models import ContentType
+from autoforms.forms import *
+from django.db.models.query import QuerySet
+from django.utils import simplejson
 
 field_types = (
     ('boolean',u'布尔值'),
@@ -45,6 +48,8 @@ widget_types = (
     ('checkboxMultiple',u'复选框'),
 )
 
+# Form Definition
+
 class Form(models.Model):
     """
     Present a Django Form subClass
@@ -83,6 +88,9 @@ class Form(models.Model):
             for f in order_field:
                 real_fields.append(field_dict[f])
         return real_fields
+
+    def as_form(self):
+        return AutoForm(fields=self.sorted_fields())
 
     class Meta:
         verbose_name = u'表单'
@@ -133,11 +141,29 @@ class ErrorMessage(models.Model):
     def __unicode__(self):
         return self.type
 
+# Form Runtime
 
 class FormInstance(models.Model):
+    """
+    A Form Instance
+    """
     form = models.ForeignKey(Form,verbose_name=u'表单')
     name = models.CharField(u'名称',max_length=100)
     create_at = models.DateTimeField(u'创建时间')
+
+    def save(self,*args,**kwargs):
+        super(FormInstance,self).save(*args,**kwargs)
+        if kwargs.get('data',None):
+            for key in data.keys():
+                if data[key] is not None:
+                    if type(data[key]) in(list,QuerySet,tuple):
+                        value = [str(item) for item in data[key]]
+                        value = simplejson.dumps(value)
+                    else:
+                        value = str(data[key])
+                field_value = FieldValue(form=self,name=key,value=value)
+                field_value.save()
+
 
     class Meta:
         verbose_name = u'表单实例'
