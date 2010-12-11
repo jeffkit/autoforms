@@ -1,0 +1,20 @@
+{%extends 'admin/base_site.html'%}
+	<script type="text/javascript">window.__admin_media_prefix__ = "/media/";</script>
+	{%block extrastyle%}
+	{{block.super}}
+	<link rel="stylesheet" type="text/css" href="/media/css/forms.css" />
+    <script type="text/javascript" src="{%url autoforms.views.jsi18n%}"></script>    
+	<script type="text/javascript" src="/media/js/core.js"></script>
+	{{form.media}}
+	{%endblock%}
+    {%block title%}{{dform.name}}{%endblock%}
+{%block content%}
+    <h1>{{dform.name}}</h1>
+    <p>&nbsp;</p>
+    {{dform.description}}
+    <p>&nbsp;</p>
+	<form action="" method="POST">
+        {{form.as_p}}
+	<input type="submit" value="提交"/>
+	</form>
+{%endblock%}

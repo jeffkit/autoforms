@@ -1,0 +1,16 @@
+{%extends 'admin/base_site.html'%}
+	<script type="text/javascript">window.__admin_media_prefix__ = "/media/";</script>
+	{%block extrastyle%}
+	{{block.super}}
+	<link rel="stylesheet" type="text/css" href="/media/css/forms.css" />
+    <script type="text/javascript" src="{%url autoforms.views.jsi18n%}"></script>    
+	<script type="text/javascript" src="/media/js/core.js"></script>
+	{{form.media}}
+	{%endblock%}
+    {%block title%}表单提交成功{%endblock%}
+{%block content%}
+    <h1>表单提交成功</h1>
+    <p>&nbsp;</p>
+    <p>您已成功提交表单，感谢您的参与！</p>
+    <p>您可以点击这里查看该表单的数据。</p>
+{%endblock%}

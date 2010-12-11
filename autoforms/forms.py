@@ -67,7 +67,7 @@ class AutoForm(forms.Form):
     2. create an AutoForm with datas:
     form = AutoForm(fields=form.sorted_fields()),data=datas)
     """
-    def __init__(self,fields,data,*args,**kwargs1):
+    def __init__(self,fields,data=None,*args,**kwargs1):
         super(AutoForm,self).__init__(data,*args,**kwargs1)
         # fields is a set of sorted fields
         for field in fields:

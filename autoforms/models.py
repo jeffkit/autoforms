@@ -2,7 +2,6 @@
 from django.db import models
 from django import forms
 from django.contrib.contenttypes.models import ContentType
-from autoforms.forms import *
 from django.db.models.query import QuerySet
 from django.utils import simplejson
 
@@ -90,6 +89,7 @@ class Form(models.Model):
         return real_fields
 
     def as_form(self):
+        from autoforms.forms import AutoForm
         return AutoForm(fields=self.sorted_fields())
 
     class Meta:
@@ -149,11 +149,15 @@ class FormInstance(models.Model):
     """
     form = models.ForeignKey(Form,verbose_name=u'表单')
     name = models.CharField(u'名称',max_length=100)
-    create_at = models.DateTimeField(u'创建时间')
+    create_at = models.DateTimeField(u'创建时间',auto_now_add=True)
 
     def save(self,*args,**kwargs):
-        super(FormInstance,self).save(*args,**kwargs)
+        data = None
         if kwargs.get('data',None):
+           data = kwargs['data']
+           del kwargs['data']
+        super(FormInstance,self).save(*args,**kwargs)
+        if data:
             for key in data.keys():
                 if data[key] is not None:
                     if type(data[key]) in(list,QuerySet,tuple):
