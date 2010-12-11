@@ -45,6 +45,8 @@ widget_types = (
     ('checkboxMultiple',u'复选框'),
 )
 
+# Form Definition
+
 class Form(models.Model):
     """
     Present a Django Form subClass
@@ -134,3 +136,16 @@ class ErrorMessage(models.Model):
         return self.type
 
 
+# Form Runtime
+
+class FormInstance(models.Model):
+    form = models.ForeignKey(Form,verbose_name=u'表单')
+    name = models.CharField(u'表单名称',max_length=100)
+    create_at = models.DatetimeField(u'创建时间')
+
+    class Meta:
+        verbose_name = u'表单实例'
+        verbose_name_plural = u'表单实例'
+
+    def __unicode__(self):
+        return self.name
