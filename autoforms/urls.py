@@ -3,6 +3,7 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
     (r'^jsi18n/$','autoforms.views.jsi18n'),
-	(r'^form_preview/$','autoforms.views.form_preview'),
-	(r'^form_preview/(?P<id>\d+)/$','autoforms.views.form_preview'),
+	(r'^preview/$','autoforms.views.preview'),
+	(r'^preview/(?P<id>\d+)/$','autoforms.views.preview'),
+	(r'^fill/(?P<id>\d+)/$','autoforms.views.fill'),
 )

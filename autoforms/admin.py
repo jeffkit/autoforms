@@ -20,7 +20,7 @@ admin.site.register(models.Form,FormAdmin)
 
 class ErrorMessageInline(admin.TabularInline):
     model = models.ErrorMessage
-    template = 'field_tabular.html'
+    template = 'autoforms/field_tabular.html'
 
 class FieldAdmin(admin.ModelAdmin):
     list_display = ['name','label','type','required','order','form']
