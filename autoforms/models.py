@@ -134,3 +134,25 @@ class ErrorMessage(models.Model):
         return self.type
 
 
+class FormInstance(models.Model):
+    form = models.ForeignKey(Form,verbose_name=u'表单')
+    name = models.CharField(u'名称',max_length=100)
+    create_at = models.DateTimeField(u'创建时间')
+
+    class Meta:
+        verbose_name = u'表单实例'
+        verbose_name_plural = u'表单实例'
+
+    def __unicode__(self):
+        return self.name
+
+
+class FieldValue(models.Model):
+    form = models.ForeignKey(FormInstance,verbose_name=u'表单')
+    name = models.CharField(u'字段名',max_length=100)
+    value = models.TextField(u'字段值')
+
+    class Meta:
+        verbose_name = u'字段值'
+        verbose_name_plural = u'字段值'
+
