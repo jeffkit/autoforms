@@ -208,10 +208,10 @@ class FormInstance(models.Model):
             for key in data.keys():
                 if data[key] is not None:
                     if type(data[key]) in(list,QuerySet,tuple):
-                        value = [str(item) for item in data[key]]
+                        value = [unicode(item) for item in data[key]]
                         value = simplejson.dumps(value)
                     else:
-                        value = str(data[key])
+                        value = unicode(data[key])
                 field_value = FieldValue(form=self,name=key,value=value)
                 field_value.save()
 
@@ -232,17 +232,3 @@ class FieldValue(models.Model):
     class Meta:
         verbose_name = u'字段值'
         verbose_name_plural = u'字段值'
-
-# Form Runtime
-
-class FormInstance(models.Model):
-    form = models.ForeignKey(Form,verbose_name=u'表单')
-    name = models.CharField(u'表单名称',max_length=100)
-    create_at = models.DatetimeField(u'创建时间')
-
-    class Meta:
-        verbose_name = u'表单实例'
-        verbose_name_plural = u'表单实例'
-
-    def __unicode__(self):
-        return self.name
