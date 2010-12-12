@@ -9,6 +9,7 @@
     {{dform.description|safe}}
     <p>&nbsp;</p>
 	<form action="" method="POST">
+         {% csrf_token %} 
         {{form.as_p}}
 	<input type="submit" value="提交"/>
 	</form>
