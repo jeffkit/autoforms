@@ -6,7 +6,7 @@
 {%block content%}
     <h1>{{dform.name}}</h1>
     <p>&nbsp;</p>
-    {{dform.description}}
+    {{dform.description|safe}}
     <p>&nbsp;</p>
 	<form action="" method="POST">
         {{form.as_p}}

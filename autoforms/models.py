@@ -208,10 +208,10 @@ class FormInstance(models.Model):
             for key in data.keys():
                 if data[key] is not None:
                     if type(data[key]) in(list,QuerySet,tuple):
-                        value = [str(item) for item in data[key]]
+                        value = [unicode(item) for item in data[key]]
                         value = simplejson.dumps(value)
                     else:
-                        value = str(data[key])
+                        value = unicode(data[key])
                 field_value = FieldValue(form=self,name=key,value=value)
                 field_value.save()
 
@@ -232,4 +232,3 @@ class FieldValue(models.Model):
     class Meta:
         verbose_name = u'字段值'
         verbose_name_plural = u'字段值'
-
