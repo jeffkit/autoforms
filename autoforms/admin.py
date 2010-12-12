@@ -10,7 +10,7 @@ class FieldInline(admin.TabularInline):
     form = forms.FieldForm
 
 class FormAdmin(admin.ModelAdmin):
-    list_display = ['name','description']
+    list_display = ['name','short_desc']
     search_fields = ['name','description']
     inlines = [FieldInline]
 

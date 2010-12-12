@@ -3,12 +3,41 @@
 {%block content%}
     <h1>Welcome to AutoForms</h1>
     <p>AutoForms is a Django application with which you can define&change forms at runtime.</p>
-    <p>Who need autoforms:</p>
+    <h2>Who need autoforms:</h2>
     <ul>
     	<li>polling.</li>
     	<li>information collecting.</li>
     	<li>custom form in workflow.</li>
-        <li>you want a dynamic form in your application.</li>
+        <li>you want a dynamic form in your django application.</li>
         <li>etc.....</li>
     </ul>
+    <h2>Links</h2>
+        <p>
+            <a href="https://github.com/jeffkit/autoforms">Browser Source on github</a>
+        </p>
+        <p>
+            <a href="/admin/autoforms/">Form Manage Demo (login:form,password:form)</a>
+        </p>
+   <p><a href="{%url autoforms.views.preview%}">Preview predifine Forms</a></p> 
+
+    <p>&nbsp;</p>
+
+     <h1>欢迎使用AutoForms</h1>
+    <p>AutoForms是一个Django的应用，通过它，你可以通过非编程的手段在程序运行的过程中定义、创建、修改表单甚至保存表单数据。</p>
+    <h2>使用场景:</h2>
+    <ul>
+    	<li>投票，调查</li>
+    	<li>信息收集</li>
+    	<li>工作流中的自定义表单</li>
+        <li>你需要用到动态表单的Django应用程序</li>
+        <li>等等.....</li>
+    </ul>
+    <h2>链接</h2>
+        <p>
+            <a href="https://github.com/jeffkit/autoforms">到github浏览源码</a>
+        </p>
+        <p>
+            <a href="/admin/autoforms/">表单管理Demo(login:form,password:form)</a>
+        </p>
+        <p><a href="{%url autoforms.views.preview%}">预览已定义的表单</a></p> 
 {%endblock%}
