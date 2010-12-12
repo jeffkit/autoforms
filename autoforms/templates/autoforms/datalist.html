@@ -1,0 +1,19 @@
+{% load autoforms %}
+<table>
+    <thead>
+        <tr>
+            {% for field in fields %} 
+            <th>{{field.label}}</th>
+            {% endfor %}
+        </tr> 
+    </thead>
+    <tbody>
+        {% for data in datalist %} 
+        <tr>
+            {% for field in fields %}
+            <td> {{data|attr:field.name}}</td>
+            {% endfor %}
+        </tr> 
+        {% endfor %}
+    </tbody>
+</table>

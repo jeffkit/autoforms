@@ -2,6 +2,8 @@
 from django.db import models
 from django import forms
 from django.contrib.contenttypes.models import ContentType
+from django.db.models.query import QuerySet
+from django.utils import simplejson
 
 field_types = (
     ('boolean',u'布尔值'),
@@ -45,6 +47,8 @@ widget_types = (
     ('checkboxMultiple',u'复选框'),
 )
 
+# Form Definition
+
 class Form(models.Model):
     """
     Present a Django Form subClass
@@ -54,8 +58,7 @@ class Form(models.Model):
     fields = models.TextField(u'字段',help_text=u'在此可定义显示表单的字段及排列顺序，使用逗号隔开字段名即可',blank=True,null=True)
     description = models.TextField(u'说明')
 
-
-    def sorted_fields(self):
+    def sorted_fields(self,fields=None):
         """
         return sorted fields
         """
@@ -77,12 +80,58 @@ class Form(models.Model):
                 real_fields.append(field)
             field_dict[field.name] = field # local field will override the parent's same field
 
-        if self.fields:
+        if self.fields or fields:
             real_fields = []
             order_field = self.fields.split(',')
             for f in order_field:
                 real_fields.append(field_dict[f])
         return real_fields
+
+    def as_form(self,data=None):
+        from autoforms.forms import AutoForm
+        return AutoForm(fields=self.sorted_fields(),data=data)
+
+    def search(self,page=1,pagesize=0,*args,**kwargs):
+        """
+        search form instance data
+        """
+        if pagesize:
+            start = (page - 1) * pagesize
+            fis = FormInstance.objects.filter(_form=self)[start:start + pagesize]
+        else:
+            fis = FormInstance.objects.filter(_form=self)
+
+
+        fvs = FieldValue.objects.filter(form__in=fis).order_by('form')
+
+        datas = []
+        current_instance = None
+        current_data = {}
+
+        def find_instance(id):
+            for fi in fis:
+                if fi.pk == id:return fi
+
+        def update_current():
+            current_instance.apply_form_data(self.as_form(current_data))
+            datas.append(current_instance)
+
+        for item in fvs:
+            if current_instance:
+                # same as last row
+                if item.form.pk != current_instance.pk:
+                    update_current()
+                    # setup new instace for current
+                    current_instance = find_instance(item.form.pk)
+                    current_data = {}
+            else:
+                # the first row
+                current_instance = find_instance(item.form.pk)
+            current_data[item.name] = item.value
+            setattr(current_instance,item.name,item.value)
+        update_current()
+        return datas
+
 
     class Meta:
         verbose_name = u'表单'
@@ -133,4 +182,54 @@ class ErrorMessage(models.Model):
     def __unicode__(self):
         return self.type
 
+# Form Runtime
+
+class FormInstance(models.Model):
+    """
+    A Form Instance
+    """
+    _id = models.AutoField(primary_key=True)
+    _form = models.ForeignKey(Form,verbose_name=u'表单')
+    _name = models.CharField(u'名称',max_length=100)
+    _create_at = models.DateTimeField(u'创建时间',auto_now_add=True)
+
+    def apply_form_data(self,form):
+        self.formobj = form
+        if form.is_valid():
+            self.cleaned_data = form.cleaned_data
+
+    def save(self,*args,**kwargs):
+        data = None
+        if kwargs.get('data',None):
+           data = kwargs['data']
+           del kwargs['data']
+        super(FormInstance,self).save(*args,**kwargs)
+        if data:
+            for key in data.keys():
+                if data[key] is not None:
+                    if type(data[key]) in(list,QuerySet,tuple):
+                        value = [str(item) for item in data[key]]
+                        value = simplejson.dumps(value)
+                    else:
+                        value = str(data[key])
+                field_value = FieldValue(form=self,name=key,value=value)
+                field_value.save()
+
+
+    class Meta:
+        verbose_name = u'表单实例'
+        verbose_name_plural = u'表单实例'
+
+    def __unicode__(self):
+        return self._name
+
+
+class FieldValue(models.Model):
+    form = models.ForeignKey(FormInstance,verbose_name=u'表单')
+    name = models.CharField(u'字段名',max_length=100)
+    value = models.TextField(u'字段值')
+
+    class Meta:
+        verbose_name = u'字段值'
+        verbose_name_plural = u'字段值'
 

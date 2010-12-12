@@ -1,0 +1,15 @@
+{%extends 'autoforms/base.html'%}
+{%block title%}{{dform.name}}{%endblock%}
+{%block path%}
+&rsaquo;&nbsp;fill form
+{%endblock%}
+{%block content%}
+    <h1>{{dform.name}}</h1>
+    <p>&nbsp;</p>
+    {{dform.description}}
+    <p>&nbsp;</p>
+	<form action="" method="POST">
+        {{form.as_p}}
+	<input type="submit" value="提交"/>
+	</form>
+{%endblock%}
