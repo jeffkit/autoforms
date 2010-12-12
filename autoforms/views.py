@@ -7,6 +7,9 @@ from django.contrib import admin
 def jsi18n(request):
     return admin.site.i18n_javascript(request)
 
+def index(request):
+    return render_to_response('autoforms/index.html')
+
 def preview(request,id=None,template='autoforms/preview.html'):
     if request.method == 'GET':
         pk = id or request.GET.get('id',None)

@@ -9,8 +9,6 @@ class FieldInline(admin.TabularInline):
     model = models.Field
     form = forms.FieldForm
 
-
-
 class FormAdmin(admin.ModelAdmin):
     list_display = ['name','description']
     search_fields = ['name','description']
@@ -23,7 +21,7 @@ class ErrorMessageInline(admin.TabularInline):
     template = 'autoforms/field_tabular.html'
 
 class FieldAdmin(admin.ModelAdmin):
-    list_display = ['name','label','type','required','order','form']
+    list_display = ['form','name','label','type','required','order',]
     list_filter = ['form']
     search_fields = ['name','label','description','help_text']
     inlines = [ErrorMessageInline]

@@ -110,4 +110,4 @@ class AutoForm(forms.Form):
 class FieldForm(forms.ModelForm):
     class Meta:
         model = Field
-        fields = ('name','label','type','required')
+        fields = ('type','required','order','name','label','help_text')

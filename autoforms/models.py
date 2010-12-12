@@ -58,7 +58,6 @@ class Form(models.Model):
     fields = models.TextField(u'字段',help_text=u'在此可定义显示表单的字段及排列顺序，使用逗号隔开字段名即可',blank=True,null=True)
     description = models.TextField(u'说明')
 
-
     def sorted_fields(self):
         """
         return sorted fields
@@ -88,9 +87,49 @@ class Form(models.Model):
                 real_fields.append(field_dict[f])
         return real_fields
 
-    def as_form(self):
+    def as_form(self,data=None):
         from autoforms.forms import AutoForm
-        return AutoForm(fields=self.sorted_fields())
+        return AutoForm(fields=self.sorted_fields(),data=data)
+
+    def search(self,page=1,pagesize=20,*args,**kwargs):
+        """
+        search form instance data
+        """
+
+        start = (page - 1) * pagesize
+        fis = FormInstance.objects.filter(_form=self)[start:start + pagesize]
+
+        d = {'form__in__':fis}
+        fvs = FieldValue.objects.filter(**d).order_by('form')
+
+        datas = []
+        current_instance = None
+        current_data = {}
+
+        def find_instance(id):
+            for fi in fis:
+                if fi.pk == id:return fi
+
+        def update_current():
+            current_instance.formobj = self.as_form(current_data)
+            datas.append(current_instance)
+
+        for item in fvs:
+            if current_instance:
+                # same as last row
+                if item.form.pk != current_instance.pk:
+                    update_current()
+                    # setup new instace for current
+                    current_instance = find_instance(item.form.pk)
+                    current_data = {}
+            else:
+                # the first row
+                current_instance = find_instance(item.form.pk)
+            current_data[item.name] = item.value
+            setattr(current_instance,item.name,item.value)
+        update_current()
+        return datas
+
 
     class Meta:
         verbose_name = u'表单'
@@ -147,9 +186,10 @@ class FormInstance(models.Model):
     """
     A Form Instance
     """
-    form = models.ForeignKey(Form,verbose_name=u'表单')
-    name = models.CharField(u'名称',max_length=100)
-    create_at = models.DateTimeField(u'创建时间',auto_now_add=True)
+    _id = models.AutoField(primary_key=True)
+    _form = models.ForeignKey(Form,verbose_name=u'表单')
+    _name = models.CharField(u'名称',max_length=100)
+    _create_at = models.DateTimeField(u'创建时间',auto_now_add=True)
 
     def save(self,*args,**kwargs):
         data = None
@@ -174,7 +214,7 @@ class FormInstance(models.Model):
         verbose_name_plural = u'表单实例'
 
     def __unicode__(self):
-        return self.name
+        return self._name
 
 
 class FieldValue(models.Model):
