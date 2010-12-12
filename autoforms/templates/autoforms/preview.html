@@ -19,7 +19,6 @@
 	<h1>{{dform.name}}</h1>
 	  {%if edit%}
       <form method="POST" action="{%url autoforms.views.preview%}{{id}}/">
-           {% csrf_token %} 
 		 {{form.as_p}}
 		 <input type="submit" value="submit"/>
          <a href="{%url autoforms.views.preview%}">Back</a>
