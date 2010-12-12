@@ -7,5 +7,5 @@
     <h1>表单提交成功</h1>
     <p>&nbsp;</p>
     <p>您已成功提交表单，感谢您的参与！</p>
-    <p>您可以点击这里查看该表单的数据。</p>
+    <p>您可以点击<a href="{% url autoforms.views.overview dform.id%}">这里</a>查看该表单的数据。</p>
 {%endblock%}

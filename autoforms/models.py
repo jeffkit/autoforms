@@ -58,7 +58,7 @@ class Form(models.Model):
     fields = models.TextField(u'字段',help_text=u'在此可定义显示表单的字段及排列顺序，使用逗号隔开字段名即可',blank=True,null=True)
     description = models.TextField(u'说明')
 
-    def sorted_fields(self):
+    def sorted_fields(self,fields=None):
         """
         return sorted fields
         """
@@ -80,7 +80,7 @@ class Form(models.Model):
                 real_fields.append(field)
             field_dict[field.name] = field # local field will override the parent's same field
 
-        if self.fields:
+        if self.fields or fields:
             real_fields = []
             order_field = self.fields.split(',')
             for f in order_field:
@@ -91,16 +91,18 @@ class Form(models.Model):
         from autoforms.forms import AutoForm
         return AutoForm(fields=self.sorted_fields(),data=data)
 
-    def search(self,page=1,pagesize=20,*args,**kwargs):
+    def search(self,page=1,pagesize=0,*args,**kwargs):
         """
         search form instance data
         """
+        if pagesize:
+            start = (page - 1) * pagesize
+            fis = FormInstance.objects.filter(_form=self)[start:start + pagesize]
+        else:
+            fis = FormInstance.objects.filter(_form=self)
 
-        start = (page - 1) * pagesize
-        fis = FormInstance.objects.filter(_form=self)[start:start + pagesize]
 
-        d = {'form__in__':fis}
-        fvs = FieldValue.objects.filter(**d).order_by('form')
+        fvs = FieldValue.objects.filter(form__in=fis).order_by('form')
 
         datas = []
         current_instance = None
@@ -111,7 +113,7 @@ class Form(models.Model):
                 if fi.pk == id:return fi
 
         def update_current():
-            current_instance.formobj = self.as_form(current_data)
+            current_instance.apply_form_data(self.as_form(current_data))
             datas.append(current_instance)
 
         for item in fvs:
@@ -190,6 +192,11 @@ class FormInstance(models.Model):
     _form = models.ForeignKey(Form,verbose_name=u'表单')
     _name = models.CharField(u'名称',max_length=100)
     _create_at = models.DateTimeField(u'创建时间',auto_now_add=True)
+
+    def apply_form_data(self,form):
+        self.formobj = form
+        if form.is_valid():
+            self.cleaned_data = form.cleaned_data
 
     def save(self,*args,**kwargs):
         data = None

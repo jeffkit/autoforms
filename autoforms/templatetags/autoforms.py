@@ -1,6 +1,6 @@
 #encoding=utf-8
 from django import template
-from django.template import resolve_variable,TemplateSyntaxError
+from django.template import resolve_variable,TemplateSyntaxError,loader
 import re
 
 register = template.Library()
@@ -14,6 +14,12 @@ def form_value(value):
   return value
 
 register.filter('formvalue',form_value)
+
+def attr(value,attr):
+    if value is not None:
+        return getattr(value,attr,None)
+
+register.filter('attr',attr)
 
 
 class DataListNode(template.Node):
@@ -34,18 +40,20 @@ class DataListNode(template.Node):
         if self.fields:
             self.fields = self.fields.split(',')
 
-    def render(self,context);
+    def render(self,context):
+        self.form = resolve_variable(self.form,context)
         formlist = self.form.search(*self.args,**self.kwargs)
-        context = {'datalist':formlist,'fields':self.fields}
-        tp = template.Template(self.template)
-        return tp.render(context)
+        self.fields = self.form.sorted_fields(self.fields)
+        context = {'form':self.form,'datalist':formlist,'fields':self.fields}
+        result = loader.render_to_string(self.template,context)
+        return result
 
 
 
 def formdata(parser,token):
     bits = token.split_contents()
-        if len(bits) < 2:
-            raise TemplateSyntaxError("'%s' takes at least one argument (form to a view)" % bits[0])
+    if len(bits) < 2:
+        raise TemplateSyntaxError("'%s' takes at least one argument (form to a view)" % bits[0])
     form = bits[1]
     args = []
     kwargs = {}

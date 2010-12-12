@@ -37,7 +37,7 @@ def fill(request,id,template='autoforms/fill.html',success_template='autoforms/f
     else:
         form = AutoForm(fields=dform.sorted_fields(),data=request.POST)
         if form.is_valid():
-            fi = FormInstance(form=dform,name=dform.name)
+            fi = FormInstance(_form=dform,_name=dform.name)
             fi.save(data=form.cleaned_data)
             return render_to_response(success_template,{'form':form,'dform':dform})
         else:
