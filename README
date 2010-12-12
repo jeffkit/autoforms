@@ -1,0 +1,52 @@
+===============
+About autoforms
+===============
+
+autoForms is a Django application with which you can define&change forms at runtime.
+
+------------------
+Who need autoforms
+------------------
+
+- polling.
+- information collecting.
+- custom form in workflow.
+- you want a dynamic form in your django application.
+- etc.....
+
+-----
+Links
+-----
+
+`Browser Source on github <https://github.com/jeffkit/autoforms/>`_
+
+`Form Manage Demo (login:form,password:form) <https://autoforms.sandbox.jeffkit.info/admin/autoforms>`_
+
+`Preview predifine Forms <http://autoforms.sandbox.jeffkit.info/preview/>`_
+
+     
+=================
+欢迎使用AutoForms
+=================
+
+AutoForms是一个Django的应用，通过它，你可以通过非编程的手段在程序运行的过程中定义、创建、修改表单甚至保存表单数据。
+
+---------
+使用场景
+---------
+
+- 投票，调查
+- 信息收集
+- 工作流中的自定义表单
+- 你需要用到动态表单的Django应用程序
+- 等等.....
+
+----
+链接
+----
+
+`到github浏览源码 <https://github.com/jeffkit/autoforms/>`_
+
+`表单管理Demo(login:form,password:form) <https://autoforms.sandbox.jeffkit.info/admin/autoforms>`_
+
+`预览已定义的表单 <http://autoforms.sandbox.jeffkit.info/preview/>`_

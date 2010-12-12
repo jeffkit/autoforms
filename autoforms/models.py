@@ -58,6 +58,13 @@ class Form(models.Model):
     fields = models.TextField(u'字段',help_text=u'在此可定义显示表单的字段及排列顺序，使用逗号隔开字段名即可',blank=True,null=True)
     description = models.TextField(u'说明')
 
+    def short_desc(self):
+        if self.description and len(self.description) > 70:
+            return self.description[:70] + '...'
+        return self.description
+
+    short_desc.short_description = u'描述'
+
     def sorted_fields(self,fields=None):
         """
         return sorted fields

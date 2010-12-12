@@ -6,9 +6,10 @@
 {%block content%}
     <h1>{{dform.name}}</h1>
     <p>&nbsp;</p>
-    {{dform.description|safe}}
+    {{dform.description|linebreaks}}
     <p>&nbsp;</p>
 	<form action="" method="POST">
+        {% csrf_token %}
         {{form.as_p}}
 	<input type="submit" value="提交"/>
 	</form>
