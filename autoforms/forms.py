@@ -103,6 +103,13 @@ class AutoForm(forms.Form):
                     if 'choices' not in kwargs:
                         raise ValueError,u'下拉框和单（复）选框均需要指定choices参数，请更正表单域的定义'
 
+            # custome error message
+            error_messages = {}
+            for error_msg in field.errorMessage_set.all():
+                error_messages[error_msg.type] =  error_msg.message
+
+            if error_messages:
+                kwargs['error_messages'] = error_messages
 
             self.fields[field.name] = field_type(**kwargs)
 
