@@ -65,6 +65,20 @@ class Form(models.Model):
 
     short_desc.short_description = u'描述'
 
+    def persist(self,data):
+        """
+        usage:
+        data = request.POST
+        form.persist(data)
+        """
+        form = self.as_form(data)
+        if form.is_valid():
+            fi = FormInstance(_form=self,_name=self.name)
+            fi.save(form.cleaned_data)
+            return fi
+        else:
+            return None
+
     def sorted_fields(self,fields=None):
         """
         return sorted fields
@@ -95,6 +109,11 @@ class Form(models.Model):
         return real_fields
 
     def as_form(self,data=None):
+        """
+        usage:
+        form = Form.objects.get(pk=1)
+        fobj = form.as_form() # fobj is a Django Form obj
+        """
         from autoforms.forms import AutoForm
         return AutoForm(fields=self.sorted_fields(),data=data)
 
