@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup, Command, Extension
+from setuptools import setup
 from autoforms import version
 
 url="http://autoforms.sandbox.jeffkit.info"
