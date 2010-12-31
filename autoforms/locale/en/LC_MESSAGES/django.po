@@ -1,0 +1,342 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-30 23:13+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:10
+msgid "boolean"
+msgstr "boolean"
+
+#: models.py:11
+msgid "char"
+msgstr "char"
+
+#: models.py:12
+msgid "choice"
+msgstr "choice"
+
+#: models.py:13 models.py:39
+msgid "date"
+msgstr "date"
+
+#: models.py:14 models.py:40
+msgid "datetime"
+msgstr "datetime"
+
+#: models.py:15
+msgid "decimal"
+msgstr "decimal"
+
+#: models.py:16
+msgid "email"
+msgstr "email"
+
+#: models.py:17 models.py:38
+msgid "file"
+msgstr "file"
+
+#: models.py:18
+msgid "float"
+msgstr "float"
+
+#: models.py:19
+msgid "filepath"
+msgstr "filepath"
+
+#: models.py:20
+msgid "image"
+msgstr "image"
+
+#: models.py:21
+msgid "integer"
+msgstr "integer"
+
+#: models.py:22
+msgid "ipaddress"
+msgstr "ip"
+
+#: models.py:23
+msgid "mulitpleChoice"
+msgstr "mulitpleChoice"
+
+#: models.py:24 models.py:45
+msgid "nullBoolean"
+msgstr "nullBoolean"
+
+#: models.py:25
+msgid "regex"
+msgstr "regex"
+
+#: models.py:26
+msgid "slug"
+msgstr "slug"
+
+#: models.py:27 models.py:41
+msgid "time"
+msgstr "time"
+
+#: models.py:28
+msgid "url"
+msgstr "url"
+
+#: models.py:29
+msgid "modelChoice"
+msgstr "modelChoice"
+
+#: models.py:30
+msgid "modelMultipleChoice"
+msgstr "modelMultipleChoice"
+
+#: models.py:34
+msgid "text"
+msgstr "text"
+
+#: models.py:35
+msgid "password"
+msgstr "password"
+
+#: models.py:36
+msgid "hidden"
+msgstr "hidden"
+
+#: models.py:37
+msgid "multipleHidden"
+msgstr "multipleHidden"
+
+#: models.py:42
+msgid "textarea"
+msgstr "textarea"
+
+#: models.py:43
+msgid "checkbox"
+msgstr "checkbox"
+
+#: models.py:44
+msgid "select"
+msgstr "select"
+
+#: models.py:46
+msgid "selectMultiple"
+msgstr "selectMultiple"
+
+#: models.py:47
+msgid "radio"
+msgstr "radio"
+
+#: models.py:48
+msgid "checkboxMultiple"
+msgstr "checkboxMultiple"
+
+#: models.py:57
+msgid "Form.name"
+msgstr "name"
+
+#: models.py:58
+msgid "Form.base"
+msgstr "base"
+
+#: models.py:59
+msgid "Form.fields"
+msgstr "fields"
+
+#: models.py:59
+msgid "set the display fields,separate with comma"
+msgstr "set the display fields,separate with comma."
+
+#: models.py:60
+msgid "Form.description"
+msgstr "description"
+
+#: models.py:67
+msgid "description"
+msgstr "description"
+
+#: models.py:164
+msgid "form"
+msgstr "form"
+
+#: models.py:165
+msgid "forms"
+msgstr "forms"
+
+#: models.py:174
+msgid "Field.form"
+msgstr "form"
+
+#: models.py:175
+msgid "Field.name"
+msgstr "name"
+
+#: models.py:175
+msgid "leters,digits,underline are allowed."
+msgstr "leters,digits,underline are allowed"
+
+#: models.py:176
+msgid "Field.label"
+msgstr "label"
+
+#: models.py:176
+msgid "a friendly field label"
+msgstr "a friendly label for this field"
+
+#: models.py:177
+msgid "Field.required"
+msgstr "required"
+
+#: models.py:177
+msgid "is it required?"
+msgstr "is this field required?"
+
+#: models.py:178
+msgid "Field.type"
+msgstr "type"
+
+#: models.py:179
+msgid "Field.help_text"
+msgstr "help_text"
+
+#: models.py:180
+msgid "Field.widget"
+msgstr "widget"
+
+#: models.py:181
+msgid "Field.initial"
+msgstr "initial"
+
+#: models.py:182
+msgid "Field.validators"
+msgstr "validators"
+
+#: models.py:182
+msgid "validator names,separate with space"
+msgstr "validator names,separate with space"
+
+#: models.py:183
+msgid "Field.localize"
+msgstr "localize"
+
+#: models.py:184
+msgid "Field.order"
+msgstr "order"
+
+#: models.py:185
+msgid "Field.description"
+msgstr "description"
+
+#: models.py:186
+msgid "Field.datasource"
+msgstr "datasource"
+
+#: models.py:186
+msgid "select a datasource for the choice field"
+msgstr "select a datasource for the choice field"
+
+#: models.py:187
+msgid "Field.extends"
+msgstr "extends"
+
+#: models.py:187
+msgid "other parameters,such as widget parameters,use a json dictionary"
+msgstr "other parameters,such as widget parameters,use a json dictionary"
+
+#: models.py:188
+msgid "Field.enable"
+msgstr "enable"
+
+#: models.py:191
+msgid "Field"
+msgstr "Field"
+
+#: models.py:192
+msgid "Fields"
+msgstr "Fields"
+
+#: models.py:201
+msgid "ErrorMessage.field"
+msgstr "field"
+
+#: models.py:202
+msgid "ErrorMessage.type"
+msgstr "type"
+
+#: models.py:203
+msgid "ErrorMessage.message"
+msgstr "message"
+
+#: models.py:206
+msgid "ErrorMessage"
+msgstr "ErrorMessage"
+
+#: models.py:207
+msgid "ErrorMessages"
+msgstr "ErrorMessages"
+
+#: models.py:219
+msgid "FormInstance.form"
+msgstr "form"
+
+#: models.py:220
+msgid "FormInstance.name"
+msgstr "name"
+
+#: models.py:221
+msgid "FormInstance.create_at"
+msgstr "create_at"
+
+#: models.py:247
+msgid "FormInstance"
+msgstr "FormInstance"
+
+#: models.py:248
+msgid "FormInstances"
+msgstr "FormInstances"
+
+#: models.py:255
+msgid "FieldValue.form"
+msgstr "form"
+
+#: models.py:256
+msgid "FieldValue.name"
+msgstr "name"
+
+#: models.py:257
+msgid "FieldValue.value"
+msgstr "value"
+
+#: models.py:260
+msgid "FieldValue"
+msgstr "FieldValue"
+
+#: models.py:261
+msgid "FieldValues"
+msgstr "FieldValues"
+
+#: templates/autoforms/field_tabular.html:15
+msgid "Delete?"
+msgstr "Delete?"
+
+#: templates/autoforms/field_tabular.html:28
+msgid "View on site"
+msgstr "View on site"
+
+#: templates/autoforms/field_tabular.html:110
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr "Add another %(verbose_name)s"
+
+#: templates/autoforms/field_tabular.html:113
+msgid "Remove"
+msgstr "Remove"
