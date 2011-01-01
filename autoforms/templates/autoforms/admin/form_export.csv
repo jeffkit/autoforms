@@ -1,0 +1,3 @@
+{% load autoforms %}{% for field in fields %}"{{field.label}}",{% endfor %}
+{% for data in datalist %} {% for field in fields %}"{{data|attr:field.name|default_if_none:''}}",{% endfor %}
+{% endfor %}
