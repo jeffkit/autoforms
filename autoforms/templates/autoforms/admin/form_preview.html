@@ -1,0 +1,44 @@
+{% extends "admin/base_site.html" %}
+{% load i18n adminmedia%}
+{% block extrastyle %}
+{{ block.super}} <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="../../../../">{% trans 'Home' %}</a> &rsaquo; 
+    <a href="../../../">Autoforms</a> &rsaquo; 
+    <a href="../../">form</a> &rsaquo; 
+    <a href="../">{{ form|truncatewords:"18" }}</a> &rsaquo; 
+    {% trans 'Preview' %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+<form action="" id="form_form">
+<div >
+    <fieldset class="module aligned ">
+    {% for field in form.as_form %}
+        <div class="form-row{% if field.errors %} errors{% endif %}">
+            {%if field.errors%}
+			<ul class="errorlist">
+			  {%for error in field.errors%}
+			  <li>{{error}}</li>
+			  {%endfor%}
+			</ul>
+			{%endif%}
+			
+            <div>
+                {{ field.label_tag }}
+                {{ field }}
+				{% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</fieldset>
+</div>
+</form>
+</div>
+{% endblock %}

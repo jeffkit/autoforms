@@ -1,9 +1,15 @@
 #encoding=utf-8
 
+from django.conf.urls.defaults import *
 from django.contrib import admin
+from django.http import HttpResponse
+from django.shortcuts import render_to_response,get_object_or_404
+from django.template import RequestContext
+from django.utils.translation import ugettext_lazy as _
 
 from autoforms import models
 from autoforms import forms
+
 
 class FieldInline(admin.TabularInline):
     model = models.Field
@@ -13,6 +19,30 @@ class FormAdmin(admin.ModelAdmin):
     list_display = ['name','short_desc']
     search_fields = ['name','description']
     inlines = [FieldInline]
+
+    def preview(self,request,id):
+        form = models.Form.objects.get(pk=id)
+        return render_to_response('autoforms/admin/form_preview.html',{'form':form,'title':_('Preview form : %(form_name)s'%{'form_name':form.name})},context_instance = RequestContext(request))
+
+    def data(self,request,id):
+        form = models.Form.objects.get(pk=id)
+        return render_to_response('autoforms/admin/form_data.html',{'form':form,'title':_('Data of form : %(form_name)s'%{'form_name':form.name})},context_instance = RequestContext(request))
+
+    def embed(self,request,id):
+        return HttpResponse('get embed code')
+
+    def export(self,request,id,format='csv'):
+        return HttpResponse('exporting')
+
+    def get_urls(self):
+        urls = super(FormAdmin,self).get_urls()
+        form_urls = patterns('',
+            (r'^(?P<id>\d+)/preview/$',self.admin_site.admin_view(self.preview)),
+            (r'^(?P<id>\d+)/data/$',self.admin_site.admin_view(self.data)),
+            (r'^(?P<id>\d+)/embed/$',self.admin_site.admin_view(self.embed)),
+            (r'^(?P<id>\d+)/data/export/$',self.admin_site.admin_view(self.export)),
+        )
+        return form_urls + urls
 
 admin.site.register(models.Form,FormAdmin)
 
