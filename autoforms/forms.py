@@ -105,7 +105,7 @@ class AutoForm(forms.Form):
 
             # custome error message
             error_messages = {}
-            for error_msg in field.errorMessage_set.all():
+            for error_msg in field.errormessage_set.all():
                 error_messages[error_msg.type] =  error_msg.message
 
             if error_messages:
