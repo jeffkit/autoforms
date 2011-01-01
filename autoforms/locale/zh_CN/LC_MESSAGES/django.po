@@ -1,20 +1,29 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Autoforms English Message file.
+# Copyright (C) 2010 jeffkit.info 
+# This file is distributed under the same license as the autoforms package.
+# jeff@fallever.com, 2010.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-30 23:13+0800\n"
+"POT-Creation-Date: 2011-01-01 22:29+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: jeff.kit <jeff@fallever.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:25
+#, python-format
+msgid "Preview form : %(form_name)s"
+msgstr "预览表单： %(form_name)s"
+
+#: admin.py:29
+#, python-format
+msgid "Data of form : %(form_name)s"
+msgstr "浏览表单数据： %(form_name)s"
 
 #: models.py:10
 msgid "boolean"
@@ -324,13 +333,32 @@ msgstr "字段值"
 msgid "FieldValues"
 msgstr "字段值"
 
-#: templates/autoforms/field_tabular.html:15
-msgid "Delete?"
-msgstr "删除？"
+#: templates/admin/autoforms/form/change_form.html:7
+#: templates/autoforms/admin/form_preview.html:12
+msgid "Preview"
+msgstr "预览"
 
+#: templates/admin/autoforms/form/change_form.html:8
+#: templates/autoforms/admin/form_data.html:11
+msgid "Data"
+msgstr "数据"
+
+#: templates/admin/autoforms/form/change_form.html:9
+msgid "Embed"
+msgstr "嵌入"
+
+#: templates/admin/autoforms/form/change_form.html:10
+msgid "History"
+msgstr "历史"
+
+#: templates/admin/autoforms/form/change_form.html:11
 #: templates/autoforms/field_tabular.html:28
 msgid "View on site"
 msgstr "在网站上查看"
+
+#: templates/autoforms/field_tabular.html:15
+msgid "Delete?"
+msgstr "删除？"
 
 #: templates/autoforms/field_tabular.html:110
 #, python-format
@@ -340,3 +368,12 @@ msgstr "新增 %(verbose_name)s"
 #: templates/autoforms/field_tabular.html:113
 msgid "Remove"
 msgstr "删除"
+
+#: templates/autoforms/admin/form_data.html:7
+#: templates/autoforms/admin/form_preview.html:8
+msgid "Home"
+msgstr "首页"
+
+#: templates/autoforms/admin/form_data.html:21
+msgid "Export"
+msgstr "导出"
