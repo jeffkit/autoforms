@@ -1,0 +1,412 @@
+# Autoforms English Message file.
+# Copyright (C) 2010 jeffkit.info 
+# This file is distributed under the same license as the autoforms package.
+# jeff@fallever.com, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-02 22:38+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: jeff.kit <jeff@fallever.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:28
+#, python-format
+msgid "Preview form : %(form_name)s"
+msgstr "Preview form : %(form_name)s"
+
+#: admin.py:32
+#, python-format
+msgid "Data of form : %(form_name)s"
+msgstr "Data of form : %(form_name)s"
+
+#: admin.py:40 templates/admin/autoforms/form/change_form.html:14
+msgid "Embed code"
+msgstr "Embed code"
+
+#: models.py:10
+msgid "boolean"
+msgstr "boolean"
+
+#: models.py:11
+msgid "char"
+msgstr "char"
+
+#: models.py:12
+msgid "choice"
+msgstr "choice"
+
+#: models.py:13 models.py:39
+msgid "date"
+msgstr "date"
+
+#: models.py:14 models.py:40
+msgid "datetime"
+msgstr "datetime"
+
+#: models.py:15
+msgid "decimal"
+msgstr "decimal"
+
+#: models.py:16
+msgid "email"
+msgstr "email"
+
+#: models.py:17 models.py:38
+msgid "file"
+msgstr "file"
+
+#: models.py:18
+msgid "float"
+msgstr "float"
+
+#: models.py:19
+msgid "filepath"
+msgstr "filepath"
+
+#: models.py:20
+msgid "image"
+msgstr "image"
+
+#: models.py:21
+msgid "integer"
+msgstr "integer"
+
+#: models.py:22
+msgid "ipaddress"
+msgstr "ip"
+
+#: models.py:23
+msgid "mulitpleChoice"
+msgstr "mulitpleChoice"
+
+#: models.py:24 models.py:45
+msgid "nullBoolean"
+msgstr "nullBoolean"
+
+#: models.py:25
+msgid "regex"
+msgstr "regex"
+
+#: models.py:26
+msgid "slug"
+msgstr "slug"
+
+#: models.py:27 models.py:41
+msgid "time"
+msgstr "time"
+
+#: models.py:28
+msgid "url"
+msgstr "url"
+
+#: models.py:29
+msgid "modelChoice"
+msgstr "modelChoice"
+
+#: models.py:30
+msgid "modelMultipleChoice"
+msgstr "modelMultipleChoice"
+
+#: models.py:34
+msgid "text"
+msgstr "text"
+
+#: models.py:35
+msgid "password"
+msgstr "password"
+
+#: models.py:36
+msgid "hidden"
+msgstr "hidden"
+
+#: models.py:37
+msgid "multipleHidden"
+msgstr "multipleHidden"
+
+#: models.py:42
+msgid "textarea"
+msgstr "textarea"
+
+#: models.py:43
+msgid "checkbox"
+msgstr "checkbox"
+
+#: models.py:44
+msgid "select"
+msgstr "select"
+
+#: models.py:46
+msgid "selectMultiple"
+msgstr "selectMultiple"
+
+#: models.py:47
+msgid "radio"
+msgstr "radio"
+
+#: models.py:48
+msgid "checkboxMultiple"
+msgstr "checkboxMultiple"
+
+#: models.py:57
+msgid "Form.name"
+msgstr "name"
+
+#: models.py:58
+msgid "Form.slug"
+msgstr "slug"
+
+#: models.py:58
+msgid "a easy to remember slug,letters,digits,underlines are allowed."
+msgstr "a easy to remember slug,letters,digits,underlines are allowed."
+
+#: models.py:59
+msgid "Form.base"
+msgstr "base"
+
+#: models.py:60
+msgid "Form.fields"
+msgstr "fields"
+
+#: models.py:60
+msgid "set the display fields,separate with comma"
+msgstr "set the display fields,separate with comma."
+
+#: models.py:61
+msgid "Form.description"
+msgstr "description"
+
+#: models.py:68
+msgid "description"
+msgstr "description"
+
+#: models.py:165
+msgid "form"
+msgstr "form"
+
+#: models.py:166
+msgid "forms"
+msgstr "forms"
+
+#: models.py:175
+msgid "Field.form"
+msgstr "form"
+
+#: models.py:176
+msgid "Field.name"
+msgstr "name"
+
+#: models.py:176
+msgid "leters,digits,underline are allowed."
+msgstr "leters,digits,underline are allowed"
+
+#: models.py:177
+msgid "Field.label"
+msgstr "label"
+
+#: models.py:177
+msgid "a friendly field label"
+msgstr "a friendly label for this field"
+
+#: models.py:178
+msgid "Field.required"
+msgstr "required"
+
+#: models.py:178
+msgid "is it required?"
+msgstr "is this field required?"
+
+#: models.py:179
+msgid "Field.type"
+msgstr "type"
+
+#: models.py:180
+msgid "Field.help_text"
+msgstr "help_text"
+
+#: models.py:181
+msgid "Field.widget"
+msgstr "widget"
+
+#: models.py:182
+msgid "Field.initial"
+msgstr "initial"
+
+#: models.py:183
+msgid "Field.validators"
+msgstr "validators"
+
+#: models.py:183
+msgid "validator names,separate with space"
+msgstr "validator names,separate with space"
+
+#: models.py:184
+msgid "Field.localize"
+msgstr "localize"
+
+#: models.py:185
+msgid "Field.order"
+msgstr "order"
+
+#: models.py:186
+msgid "Field.description"
+msgstr "description"
+
+#: models.py:187
+msgid "Field.datasource"
+msgstr "datasource"
+
+#: models.py:187
+msgid "select a datasource for the choice field"
+msgstr "select a datasource for the choice field"
+
+#: models.py:188
+msgid "Field.extends"
+msgstr "extends"
+
+#: models.py:188
+msgid "other parameters,such as widget parameters,use a json dictionary"
+msgstr "other parameters,such as widget parameters,use a json dictionary"
+
+#: models.py:189
+msgid "Field.enable"
+msgstr "enable"
+
+#: models.py:192
+msgid "Field"
+msgstr "Field"
+
+#: models.py:193
+msgid "Fields"
+msgstr "Fields"
+
+#: models.py:202
+msgid "ErrorMessage.field"
+msgstr "field"
+
+#: models.py:203
+msgid "ErrorMessage.type"
+msgstr "type"
+
+#: models.py:204
+msgid "ErrorMessage.message"
+msgstr "message"
+
+#: models.py:207
+msgid "ErrorMessage"
+msgstr "ErrorMessage"
+
+#: models.py:208
+msgid "ErrorMessages"
+msgstr "ErrorMessages"
+
+#: models.py:220
+msgid "FormInstance.form"
+msgstr "form"
+
+#: models.py:221
+msgid "FormInstance.name"
+msgstr "name"
+
+#: models.py:222
+msgid "FormInstance.create_at"
+msgstr "create_at"
+
+#: models.py:248
+msgid "FormInstance"
+msgstr "FormInstance"
+
+#: models.py:249
+msgid "FormInstances"
+msgstr "FormInstances"
+
+#: models.py:256
+msgid "FieldValue.form"
+msgstr "form"
+
+#: models.py:257
+msgid "FieldValue.name"
+msgstr "name"
+
+#: models.py:258
+msgid "FieldValue.value"
+msgstr "value"
+
+#: models.py:261
+msgid "FieldValue"
+msgstr "FieldValue"
+
+#: models.py:262
+msgid "FieldValues"
+msgstr "FieldValues"
+
+#: templates/admin/autoforms/form/change_form.html:7
+#: templates/autoforms/admin/form_preview.html:17
+msgid "Preview"
+msgstr "Preview"
+
+#: templates/admin/autoforms/form/change_form.html:8
+#: templates/autoforms/admin/form_data.html:11
+msgid "Data"
+msgstr "Data"
+
+#: templates/admin/autoforms/form/change_form.html:9
+msgid "Embed"
+msgstr "Embed"
+
+#: templates/admin/autoforms/form/change_form.html:10
+msgid "History"
+msgstr "History"
+
+#: templates/admin/autoforms/form/change_form.html:11
+#: templates/autoforms/field_tabular.html:28
+msgid "View on site"
+msgstr "View on site"
+
+#: templates/autoforms/field_tabular.html:15
+msgid "Delete?"
+msgstr "Delete?"
+
+#: templates/autoforms/field_tabular.html:110
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr "Add another %(verbose_name)s"
+
+#: templates/autoforms/field_tabular.html:113
+msgid "Remove"
+msgstr "Remove"
+
+#: templates/autoforms/fill.html:28
+msgid "Submit"
+msgstr "Submit"
+
+#: templates/autoforms/fill_done.html:21
+msgid ""
+"\n"
+"    <p>Done ! Thank you for filling the  Form!</p>\n"
+"    <p>This form is powered by <a href=\"http://autoforms.sandbox.jeffkit."
+"info\">AutoForms</a>.</p>\n"
+msgstr ""
+"\n"
+"    <p>Done ! Thank you for filling the  Form!</p>\n"
+"    <p>This form is powered by <a href=\"http://autoforms.sandbox.jeffkit."
+"info\">AutoForms</a>.</p>\n"
+
+#: templates/autoforms/admin/form_data.html:7
+#: templates/autoforms/admin/form_preview.html:13
+msgid "Home"
+msgstr "Home"
+
+#: templates/autoforms/admin/form_data.html:21
+msgid "Export"
+msgstr "Export"
+
+#: templates/autoforms/admin/form_embed.html:6
+#, python-format
+msgid "Copy Html code below,Embed %(form)s to other sites."
+msgstr "Copy Html code below,Embed %(form)s to other sites."

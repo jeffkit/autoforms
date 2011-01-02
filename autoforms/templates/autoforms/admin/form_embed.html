@@ -1,0 +1,10 @@
+{% extends 'admin/base_site.html'%}
+{% load i18n %}
+{% block content %}
+<div id="content-main">
+<div>
+<p>{%blocktrans%}Copy Html code below,Embed {{form}} to other sites.{%endblocktrans%}</p>
+<textarea id="code" name="code" rows="10" cols="100">{{code}}</textarea>
+</div>
+</div>
+{%endblock%}

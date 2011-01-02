@@ -1,5 +1,5 @@
 {% load autoforms %}
-<table>
+<table id="result_list">
     <thead>
         <tr>
             {% for field in fields %} 
@@ -11,7 +11,7 @@
         {% for data in datalist %} 
         <tr>
             {% for field in fields %}
-            <td> {{data|attr:field.name}}</td>
+            <td> {{data|attr:field.name|default_if_none:''}}</td>
             {% endfor %}
         </tr> 
         {% endfor %}

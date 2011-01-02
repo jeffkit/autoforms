@@ -4,47 +4,49 @@ from django import forms
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.query import QuerySet
 from django.utils import simplejson
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
 
 field_types = (
-    ('boolean',u'布尔值'),
-    ('char',u'文本'),
-    ('choice',u'选项值'),
-    ('date',u'日期'),
-    ('datetime',u'日期时间'),
-    ('decimal',u'小数'),
-    ('email',u'Email'),
-    ('file',u'文件'),
-    ('float',u'浮点数'),
-    ('filepath',u'文件路径'),
-    ('image',u'图片'),
-    ('integer',u'整数'),
-    ('ipadress',u'IP地址'),
-    ('multipleChoice',u'多选值'),
-    #('nullBoolean',u''),
-    ('regex',u'正则表达式'),
-    #('slug',u''),
-    ('time',u'时间'),
-    ('url',u'URL'),
-    ('modelChoice',u'数据表纪录'),
-    ('modelMultipleChoice',u'数据表纪录（多选）'),
+    ('boolean',_('boolean')),
+    ('char',_('char')),
+    ('choice',_('choice')),
+    ('date',_('date')),
+    ('datetime',_('datetime')),
+    ('decimal',_('decimal')),
+    ('email',_('email')),
+    ('file',_('file')),
+    ('float',_('float')),
+    ('filepath',_('filepath')),
+    ('image',_('image')),
+    ('integer',_('integer')),
+    ('ipadress',_('ipaddress')),
+    ('multipleChoice',_('mulitpleChoice')),
+    ('nullBoolean',_('nullBoolean')),
+    ('regex',_('regex')),
+    ('slug',_('slug')),
+    ('time',_('time')),
+    ('url',_('url')),
+    ('modelChoice',_('modelChoice')),
+    ('modelMultipleChoice',_('modelMultipleChoice')),
 )
 
 widget_types = (
-    ('text',u'文本框'),
-    ('password',u'密码输入框'),
-    ('hidden',u'隐藏域'),
-    ('multipleHidden',u'多个隐藏域'),
-    ('file',u'文件浏览器'),
-    ('date',u'日期选择器'),
-    ('datetime',u'日期时间选择器'),
-    ('time',u'时间选择器'),
-    ('textarea',u'文本域'),
-    ('checkbox',u'勾选框'),
-    ('select',u'下拉框'),
-    #('nullBoolean',u''),
-    ('selectMultiple',u'多选下拉框'),
-    ('radio',u'单选框'),
-    ('checkboxMultiple',u'复选框'),
+    ('text',_('text')),
+    ('password',_('password')),
+    ('hidden',_('hidden')),
+    ('multipleHidden',_('multipleHidden')),
+    ('file',_('file')),
+    ('date',_('date')),
+    ('datetime',_('datetime')),
+    ('time',_('time')),
+    ('textarea',_('textarea')),
+    ('checkbox',_('checkbox')),
+    ('select',_('select')),
+    ('nullBoolean',_('nullBoolean')),
+    ('selectMultiple',_('selectMultiple')),
+    ('radio',_('radio')),
+    ('checkboxMultiple',_('checkboxMultiple')),
 )
 
 # Form Definition
@@ -53,17 +55,19 @@ class Form(models.Model):
     """
     Present a Django Form subClass
     """
-    name = models.CharField(u'表单名',max_length=50)
-    base = models.ForeignKey('self',verbose_name=u'继承自',blank=True,null=True)
-    fields = models.TextField(u'字段',help_text=u'在此可定义显示表单的字段及排列顺序，使用逗号隔开字段名即可',blank=True,null=True)
-    description = models.TextField(u'说明')
+    name = models.CharField(_('Form.name'),max_length=50)
+    slug = models.SlugField(_('Form.slug'),unique=True,help_text=_('a easy to remember slug,letters,digits,underlines are allowed.'))
+    base = models.ForeignKey('self',verbose_name=_('Form.base'),blank=True,null=True)
+    fields = models.TextField(_('Form.fields'),help_text=_('set the display fields,separate with comma'),blank=True,null=True)
+    description = models.TextField(_('Form.description'))
+    user = models.ForeignKey(User,verbose_name=_('user'),blank=True,null=True)
 
     def short_desc(self):
         if self.description and len(self.description) > 70:
             return self.description[:70] + '...'
         return self.description
 
-    short_desc.short_description = u'描述'
+    short_desc.short_description = _('description')
 
     def persist(self,data):
         """
@@ -155,13 +159,14 @@ class Form(models.Model):
                 current_instance = find_instance(item.form.pk)
             current_data[item.name] = item.value
             setattr(current_instance,item.name,item.value)
-        update_current()
+        if current_instance:
+            update_current()
         return datas
 
 
     class Meta:
-        verbose_name = u'表单'
-        verbose_name_plural = u'表单'
+        verbose_name = _('form')
+        verbose_name_plural = _('forms')
 
     def __unicode__(self):
         return self.name
@@ -170,25 +175,25 @@ class Field(models.Model):
     """
     Present a Form Field Class
     """
-    form = models.ForeignKey(Form,verbose_name=u'表单')
-    name = models.CharField(u'名称',max_length=50,help_text=u'请使用英文填写表单域名')
-    label = models.CharField(u'标签',max_length=50,blank=True,null=True,help_text=u'对用户友好的表单域名称')
-    required = models.BooleanField(u'必填',help_text=u'该域是否必填')
-    type = models.CharField(u'类型',max_length=50,choices=field_types)
-    help_text = models.CharField(u'帮助文本',max_length=200,blank=True,null=True,help_text=u'如这段文字一样，向用户解释该字段，方便用户理解')
-    widget = models.CharField(u'表单组件',max_length=50,blank=True,null=True,help_text=u'如果您不是特别熟悉HTML表单组件，保持系统默认即可。',choices=widget_types)
-    initial = models.CharField(u'初始值',max_length=200,blank=True,null=True)
-    validators = models.CharField(u'校验器',max_length=200,help_text=u'输入字段校验器的名称，以空格隔开',blank=True,null=True)
-    localize = models.BooleanField(u'本地化',default=False)
-    order = models.IntegerField(u'排列顺序',default=0)
-    description = models.TextField(u'说明',blank=True,null=True)
-    datasource = models.ForeignKey(ContentType,verbose_name=u'数据源',help_text=u'选择数据源，仅当表单域类型为"数据表纪录"时有效',null=True,blank=True)
-    extends = models.TextField(u'扩展',help_text=u'其他参数或下拉列表选项等，请使用json格式的数据填充',blank=True,null=True)
-    enable = models.BooleanField(u'可用',default=True)
+    form = models.ForeignKey(Form,verbose_name=_('Field.form'))
+    name = models.SlugField(_('Field.name'),help_text=_('leters,digits,underline are allowed.'))
+    label = models.CharField(_('Field.label'),max_length=50,blank=True,null=True,help_text=_('a friendly field label'))
+    required = models.BooleanField(_('Field.required'),help_text=_('is it required?'))
+    type = models.CharField(_('Field.type'),max_length=50,choices=field_types)
+    help_text = models.CharField(_('Field.help_text'),max_length=200,blank=True,null=True)
+    widget = models.CharField(_('Field.widget'),max_length=50,blank=True,null=True,choices=widget_types)
+    initial = models.CharField(_('Field.initial'),max_length=200,blank=True,null=True)
+    validators = models.CharField(_('Field.validators'),max_length=200,help_text=_('validator names,separate with space'),blank=True,null=True)
+    localize = models.BooleanField(_('Field.localize'),default=False)
+    order = models.IntegerField(_('Field.order'),default=0)
+    description = models.TextField(_('Field.description'),blank=True,null=True)
+    datasource = models.ForeignKey(ContentType,verbose_name=_('Field.datasource'),help_text=_('select a datasource for the choice field'),null=True,blank=True)
+    extends = models.TextField(_('Field.extends'),help_text=_('other parameters,such as widget parameters,use a json dictionary'),blank=True,null=True)
+    enable = models.BooleanField(_('Field.enable'),default=True)
 
     class Meta:
-        verbose_name = u'表单域'
-        verbose_name_plural = u'表单域'
+        verbose_name = _('Field')
+        verbose_name_plural = _('Fields')
 
     def __unicode__(self):
         return self.name
@@ -197,13 +202,13 @@ class ErrorMessage(models.Model):
     """
     Custom Error Messages
     """
-    field = models.ForeignKey(Field,verbose_name='表单域')
-    type = models.CharField(u'校验类型',max_length=20)
-    message = models.CharField(u'错误信息',max_length=100)
+    field = models.ForeignKey(Field,verbose_name=_('ErrorMessage.field'))
+    type = models.CharField(_('ErrorMessage.type'),max_length=20)
+    message = models.CharField(_('ErrorMessage.message'),max_length=100)
 
     class Meta:
-        verbose_name = u'错误信息'
-        verbose_name_plural = u'错误信息'
+        verbose_name = _('ErrorMessage')
+        verbose_name_plural = _('ErrorMessages')
 
     def __unicode__(self):
         return self.type
@@ -215,9 +220,9 @@ class FormInstance(models.Model):
     A Form Instance
     """
     _id = models.AutoField(primary_key=True)
-    _form = models.ForeignKey(Form,verbose_name=u'表单')
-    _name = models.CharField(u'名称',max_length=100)
-    _create_at = models.DateTimeField(u'创建时间',auto_now_add=True)
+    _form = models.ForeignKey(Form,verbose_name=_('FormInstance.form'))
+    _name = models.CharField(_('FormInstance.name'),max_length=100)
+    _create_at = models.DateTimeField(_('FormInstance.create_at'),auto_now_add=True)
 
     def apply_form_data(self,form):
         self.formobj = form
@@ -238,23 +243,23 @@ class FormInstance(models.Model):
                         value = simplejson.dumps(value)
                     else:
                         value = unicode(data[key])
-                field_value = FieldValue(form=self,name=key,value=value)
-                field_value.save()
+                    field_value = FieldValue(form=self,name=key,value=value)
+                    field_value.save()
 
 
     class Meta:
-        verbose_name = u'表单实例'
-        verbose_name_plural = u'表单实例'
+        verbose_name = _('FormInstance')
+        verbose_name_plural = _('FormInstances')
 
     def __unicode__(self):
         return self._name
 
 
 class FieldValue(models.Model):
-    form = models.ForeignKey(FormInstance,verbose_name=u'表单')
-    name = models.CharField(u'字段名',max_length=100)
-    value = models.TextField(u'字段值')
+    form = models.ForeignKey(FormInstance,verbose_name=_('FieldValue.form'))
+    name = models.CharField(_('FieldValue.name'),max_length=100)
+    value = models.TextField(_('FieldValue.value'))
 
     class Meta:
-        verbose_name = u'字段值'
-        verbose_name_plural = u'字段值'
+        verbose_name = _('FieldValue')
+        verbose_name_plural = _('FieldValues')

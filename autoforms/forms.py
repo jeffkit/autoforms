@@ -101,11 +101,11 @@ class AutoForm(forms.Form):
 
                 if field.widget in ['select','selectMultiple','radio','checkboxMultiple']:
                     if 'choices' not in kwargs:
-                        raise ValueError,u'下拉框和单（复）选框均需要指定choices参数，请更正表单域的定义'
+                        raise ValueError,'widget select,radio,checkbox need a choices parameters'
 
             # custome error message
             error_messages = {}
-            for error_msg in field.errorMessage_set.all():
+            for error_msg in field.errormessage_set.all():
                 error_messages[error_msg.type] =  error_msg.message
 
             if error_messages:

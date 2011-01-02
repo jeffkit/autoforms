@@ -1,0 +1,33 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+{% load autoforms %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="../../../../">{% trans 'Home' %}</a> &rsaquo; 
+    <a href="../../../">Autoforms</a> &rsaquo; 
+    <a href="../../">form</a> &rsaquo; 
+    <a href="../">{{ form|truncatewords:"18" }}</a> &rsaquo; 
+    {% trans 'Data' %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    {% block object-tools %}
+        <ul class="object-tools">
+          {% block object-tools-items %}
+            <li>
+              <a href="export/csv/" class="historylink">{% trans 'Export' %}</a>
+            </li>
+          {% endblock %}
+        </ul>
+    {% endblock %}
+    
+    <div class="module" id="changelist">
+    	<div class="results">
+			{% formdata form %}	
+		</div>
+    </div>
+</div>
+{% endblock %}
