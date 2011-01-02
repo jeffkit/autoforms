@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-01 22:29+0800\n"
+"POT-Creation-Date: 2011-01-02 22:38+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: jeff.kit <jeff@fallever.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,15 +15,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin.py:25
+#: admin.py:28
 #, python-format
 msgid "Preview form : %(form_name)s"
 msgstr "预览表单： %(form_name)s"
 
-#: admin.py:29
+#: admin.py:32
 #, python-format
 msgid "Data of form : %(form_name)s"
 msgstr "浏览表单数据： %(form_name)s"
+
+#: admin.py:40 templates/admin/autoforms/form/change_form.html:14
+msgid "Embed code"
+msgstr "嵌入代码"
 
 #: models.py:10
 msgid "boolean"
@@ -91,7 +95,7 @@ msgstr "正则表达式"
 
 #: models.py:26
 msgid "slug"
-msgstr "slug"
+msgstr "标识"
 
 #: models.py:27 models.py:41
 msgid "time"
@@ -154,187 +158,195 @@ msgid "Form.name"
 msgstr "表单名"
 
 #: models.py:58
+msgid "Form.slug"
+msgstr "标识"
+
+#: models.py:58
+msgid "a easy to remember slug,letters,digits,underlines are allowed."
+msgstr "为表单取一个易记的标识，允许使用英文字母、数字及下划线"
+
+#: models.py:59
 msgid "Form.base"
 msgstr "父表单"
 
-#: models.py:59
+#: models.py:60
 msgid "Form.fields"
 msgstr "字段"
 
-#: models.py:59
+#: models.py:60
 msgid "set the display fields,separate with comma"
 msgstr "在此可定义显示表单的字段及排列顺序，使用逗号隔开字段名即可"
 
-#: models.py:60
+#: models.py:61
 msgid "Form.description"
 msgstr "说明"
 
-#: models.py:67
+#: models.py:68
 msgid "description"
 msgstr "描述"
 
-#: models.py:164
+#: models.py:165
 msgid "form"
 msgstr "表单"
 
-#: models.py:165
+#: models.py:166
 msgid "forms"
 msgstr "表单"
 
-#: models.py:174
+#: models.py:175
 msgid "Field.form"
 msgstr "表单"
 
-#: models.py:175
+#: models.py:176
 msgid "Field.name"
 msgstr "字段名"
 
-#: models.py:175
+#: models.py:176
 msgid "leters,digits,underline are allowed."
 msgstr "可使用英文字母、数字及下划线"
 
-#: models.py:176
+#: models.py:177
 msgid "Field.label"
 msgstr "标签"
 
-#: models.py:176
+#: models.py:177
 msgid "a friendly field label"
 msgstr "对用户友好的表单域名称"
 
-#: models.py:177
+#: models.py:178
 msgid "Field.required"
 msgstr "必填"
 
-#: models.py:177
+#: models.py:178
 msgid "is it required?"
 msgstr "该域是否必填"
 
-#: models.py:178
+#: models.py:179
 msgid "Field.type"
 msgstr "类型"
 
-#: models.py:179
+#: models.py:180
 msgid "Field.help_text"
 msgstr "帮助文本"
 
-#: models.py:180
+#: models.py:181
 msgid "Field.widget"
 msgstr "组件"
 
-#: models.py:181
+#: models.py:182
 msgid "Field.initial"
 msgstr "初始值"
 
-#: models.py:182
+#: models.py:183
 msgid "Field.validators"
 msgstr "检验器"
 
-#: models.py:182
+#: models.py:183
 msgid "validator names,separate with space"
 msgstr "输入字段校验器的名称，以空格隔开"
 
-#: models.py:183
+#: models.py:184
 msgid "Field.localize"
 msgstr "本地化"
 
-#: models.py:184
+#: models.py:185
 msgid "Field.order"
 msgstr "排列顺序"
 
-#: models.py:185
+#: models.py:186
 msgid "Field.description"
 msgstr "说明"
 
-#: models.py:186
+#: models.py:187
 msgid "Field.datasource"
 msgstr "数据源"
 
-#: models.py:186
+#: models.py:187
 msgid "select a datasource for the choice field"
 msgstr "选择数据源，仅当字段类型为‘数据表纪录’时有效"
 
-#: models.py:187
+#: models.py:188
 msgid "Field.extends"
 msgstr "扩展"
 
-#: models.py:187
+#: models.py:188
 msgid "other parameters,such as widget parameters,use a json dictionary"
 msgstr "其他参数或下拉列表选项等，请使用json格式的数据填充"
 
-#: models.py:188
+#: models.py:189
 msgid "Field.enable"
 msgstr "可用"
 
-#: models.py:191
+#: models.py:192
 msgid "Field"
 msgstr "表单域"
 
-#: models.py:192
+#: models.py:193
 msgid "Fields"
 msgstr "表单域"
 
-#: models.py:201
+#: models.py:202
 msgid "ErrorMessage.field"
 msgstr "表单域"
 
-#: models.py:202
+#: models.py:203
 msgid "ErrorMessage.type"
 msgstr "校验类型"
 
-#: models.py:203
+#: models.py:204
 msgid "ErrorMessage.message"
 msgstr "错误信息"
 
-#: models.py:206
+#: models.py:207
 msgid "ErrorMessage"
 msgstr "错误信息"
 
-#: models.py:207
+#: models.py:208
 msgid "ErrorMessages"
 msgstr "错误信息"
 
-#: models.py:219
+#: models.py:220
 msgid "FormInstance.form"
 msgstr "表单"
 
-#: models.py:220
+#: models.py:221
 msgid "FormInstance.name"
 msgstr "名称"
 
-#: models.py:221
+#: models.py:222
 msgid "FormInstance.create_at"
 msgstr "创建时间"
 
-#: models.py:247
+#: models.py:248
 msgid "FormInstance"
 msgstr "表单纪录"
 
-#: models.py:248
+#: models.py:249
 msgid "FormInstances"
 msgstr "表单纪录"
 
-#: models.py:255
+#: models.py:256
 msgid "FieldValue.form"
 msgstr "表单"
 
-#: models.py:256
+#: models.py:257
 msgid "FieldValue.name"
 msgstr "字段名"
 
-#: models.py:257
+#: models.py:258
 msgid "FieldValue.value"
 msgstr "字段值"
 
-#: models.py:260
+#: models.py:261
 msgid "FieldValue"
 msgstr "字段值"
 
-#: models.py:261
+#: models.py:262
 msgid "FieldValues"
 msgstr "字段值"
 
 #: templates/admin/autoforms/form/change_form.html:7
-#: templates/autoforms/admin/form_preview.html:12
+#: templates/autoforms/admin/form_preview.html:17
 msgid "Preview"
 msgstr "预览"
 
@@ -369,11 +381,32 @@ msgstr "新增 %(verbose_name)s"
 msgid "Remove"
 msgstr "删除"
 
+#: templates/autoforms/fill.html:28
+msgid "Submit"
+msgstr "提交"
+
+#: templates/autoforms/fill_done.html:21
+msgid ""
+"\n"
+"    <p>Done ! Thank you for filling the  Form!</p>\n"
+"    <p>This form is powered by <a href=\"http://autoforms.sandbox.jeffkit."
+"info\">AutoForms</a>.</p>\n"
+msgstr ""
+"\n"
+"    <p>表单已成功提交 ! 感谢您的参与。</p>\n"
+"    <p>本表单由<a href=\"http://autoforms.sandbox.jeffkit.info\">AutoForms</"
+"a>提供技术支持。</p>\n"
+
 #: templates/autoforms/admin/form_data.html:7
-#: templates/autoforms/admin/form_preview.html:8
+#: templates/autoforms/admin/form_preview.html:13
 msgid "Home"
 msgstr "首页"
 
 #: templates/autoforms/admin/form_data.html:21
 msgid "Export"
 msgstr "导出"
+
+#: templates/autoforms/admin/form_embed.html:6
+#, python-format
+msgid "Copy Html code below,Embed %(form)s to other sites."
+msgstr "通过制下面的HTML代码，可把%(form)s嵌入到其他站点页面中。"

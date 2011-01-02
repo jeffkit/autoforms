@@ -55,6 +55,7 @@ class Form(models.Model):
     Present a Django Form subClass
     """
     name = models.CharField(_('Form.name'),max_length=50)
+    slug = models.SlugField(_('Form.slug'),unique=True,help_text=_('a easy to remember slug,letters,digits,underlines are allowed.'))
     base = models.ForeignKey('self',verbose_name=_('Form.base'),blank=True,null=True)
     fields = models.TextField(_('Form.fields'),help_text=_('set the display fields,separate with comma'),blank=True,null=True)
     description = models.TextField(_('Form.description'))
@@ -172,7 +173,7 @@ class Field(models.Model):
     Present a Form Field Class
     """
     form = models.ForeignKey(Form,verbose_name=_('Field.form'))
-    name = models.CharField(_('Field.name'),max_length=50,help_text=_('leters,digits,underline are allowed.'))
+    name = models.SlugField(_('Field.name'),help_text=_('leters,digits,underline are allowed.'))
     label = models.CharField(_('Field.label'),max_length=50,blank=True,null=True,help_text=_('a friendly field label'))
     required = models.BooleanField(_('Field.required'),help_text=_('is it required?'))
     type = models.CharField(_('Field.type'),max_length=50,choices=field_types)
@@ -239,8 +240,8 @@ class FormInstance(models.Model):
                         value = simplejson.dumps(value)
                     else:
                         value = unicode(data[key])
-                field_value = FieldValue(form=self,name=key,value=value)
-                field_value.save()
+                    field_value = FieldValue(form=self,name=key,value=value)
+                    field_value.save()
 
 
     class Meta:
