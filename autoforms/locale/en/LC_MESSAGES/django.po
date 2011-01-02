@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-02 15:52+0800\n"
+"POT-Creation-Date: 2011-01-02 18:56+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: jeff.kit <jeff@fallever.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -342,7 +342,7 @@ msgid "FieldValues"
 msgstr "FieldValues"
 
 #: templates/admin/autoforms/form/change_form.html:7
-#: templates/autoforms/admin/form_preview.html:12
+#: templates/autoforms/admin/form_preview.html:17
 msgid "Preview"
 msgstr "Preview"
 
@@ -377,8 +377,24 @@ msgstr "Add another %(verbose_name)s"
 msgid "Remove"
 msgstr "Remove"
 
+#: templates/autoforms/fill.html:28
+msgid "Submit"
+msgstr "Submit"
+
+#: templates/autoforms/fill_done.html:21
+msgid ""
+"\n"
+"    <p>Done ! Thank you for filling the  Form!</p>\n"
+"    <p>This form is powered by <a href=\"http://autoforms.sandbox.jeffkit."
+"info\">AutoForms</a>.</p>\n"
+msgstr ""
+"\n"
+"    <p>Done ! Thank you for filling the  Form!</p>\n"
+"    <p>This form is powered by <a href=\"http://autoforms.sandbox.jeffkit."
+"info\">AutoForms</a>.</p>\n"
+
 #: templates/autoforms/admin/form_data.html:7
-#: templates/autoforms/admin/form_preview.html:8
+#: templates/autoforms/admin/form_preview.html:13
 msgid "Home"
 msgstr "Home"
 

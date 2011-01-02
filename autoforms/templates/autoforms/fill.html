@@ -1,16 +1,32 @@
 {%extends 'autoforms/base.html'%}
-{%block title%}{{dform.name}}{%endblock%}
+{% load i18n %}
 {%block path%}
 &rsaquo;&nbsp;fill form
 {%endblock%}
+{%block extrastyle%}{{block.super}}
+{{dform.media}}
+{%if is_popup %}
+<style type="text/css">
+#container {
+min-width: 600px;
+padding: 0px;
+position: relative;
+width: 100%;
+}
+</style>
+{%endif%}
+{%endblock%}
 {%block content%}
-    <h1>{{dform.name}}</h1>
-    <p>&nbsp;</p>
-    {{dform.description|linebreaks}}
-    <p>&nbsp;</p>
-	<form action="" method="POST">
+<div id="content-main">
+<form method="POST" action="" id="form_form">
+<div >
+    <fieldset class="module aligned ">
         {% csrf_token %}
-        {{form.as_p}}
-	<input type="submit" value="提交"/>
-	</form>
+        <input type="hidden" name="is_popup" value="{{is_popup}}"/>
+        {% include 'autoforms/fields.html' %}
+    </fieldset>
+    <input type="submit" value="{%trans 'Submit'%}"/>
+</div>
+</form>
+</div>
 {%endblock%}

@@ -240,8 +240,8 @@ class FormInstance(models.Model):
                         value = simplejson.dumps(value)
                     else:
                         value = unicode(data[key])
-                field_value = FieldValue(form=self,name=key,value=value)
-                field_value.save()
+                    field_value = FieldValue(form=self,name=key,value=value)
+                    field_value.save()
 
 
     class Meta:

@@ -23,7 +23,7 @@ class FormAdmin(admin.ModelAdmin):
 
     def preview(self,request,id):
         form = models.Form.objects.get(pk=id)
-        return render_to_response('autoforms/admin/form_preview.html',{'form':form,'title':_('Preview form : %(form_name)s')%{'form_name':form.name}},context_instance = RequestContext(request))
+        return render_to_response('autoforms/admin/form_preview.html',{'form':form,'dform':form.as_form(),'title':_('Preview form : %(form_name)s')%{'form_name':form.name}},context_instance = RequestContext(request))
 
     def data(self,request,id):
         form = models.Form.objects.get(pk=id)

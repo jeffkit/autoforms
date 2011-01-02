@@ -31,18 +31,20 @@ def preview(request,id=None,template='autoforms/preview.html'):
 
 
 def fill(request,id,template='autoforms/fill.html',success_template='autoforms/fill_done.html'):
-    dform = get_object_or_404(Form,pk=id)
+    form = get_object_or_404(Form,pk=id)
+    data = request.GET or request.POST
+    is_popup = data.get('is_popup',None)
     if request.method == 'GET':
-        form = dform.as_form()
-        return render_to_response(template,{'form':form,'dform':dform},context_instance=RequestContext(request))
+        dform = form.as_form()
+        return render_to_response(template,{'title':form.name,'is_popup':is_popup,'form':form,'dform':dform},context_instance=RequestContext(request))
     else:
-        form = AutoForm(fields=dform.sorted_fields(),data=request.POST)
-        if form.is_valid():
-            fi = FormInstance(_form=dform,_name=dform.name)
-            fi.save(data=form.cleaned_data)
-            return render_to_response(success_template,{'form':form,'dform':dform},context_instance=RequestContext(request))
+        dform = AutoForm(fields=form.sorted_fields(),data=request.POST)
+        if dform.is_valid():
+            fi = FormInstance(_form=form,_name=form.name)
+            fi.save(data=dform.cleaned_data)
+            return render_to_response(success_template,{'title':form.name,'is_popup':is_popup,'form':form,'dform':dform},context_instance=RequestContext(request))
         else:
-            return render_to_response(template,{'form':form,'dform':dform},context_instance=RequestContext(request))
+            return render_to_response(template,{'title':form.name,'is_popup':is_popup,'form':form,'dform':dform},context_instance=RequestContext(request))
 
 def overview(request,id,template='autoforms/overview.html'):
     dform = get_object_or_404(Form,pk=id)
