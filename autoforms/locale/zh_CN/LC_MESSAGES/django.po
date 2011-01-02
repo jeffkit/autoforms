@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-02 18:56+0800\n"
+"POT-Creation-Date: 2011-01-02 22:38+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: jeff.kit <jeff@fallever.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,15 +15,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin.py:26
+#: admin.py:28
 #, python-format
 msgid "Preview form : %(form_name)s"
 msgstr "预览表单： %(form_name)s"
 
-#: admin.py:30
+#: admin.py:32
 #, python-format
 msgid "Data of form : %(form_name)s"
 msgstr "浏览表单数据： %(form_name)s"
+
+#: admin.py:40 templates/admin/autoforms/form/change_form.html:14
+msgid "Embed code"
+msgstr "嵌入代码"
 
 #: models.py:10
 msgid "boolean"
@@ -390,8 +394,8 @@ msgid ""
 msgstr ""
 "\n"
 "    <p>表单已成功提交 ! 感谢您的参与。</p>\n"
-"    <p>本表单由<a href=\"http://autoforms.sandbox.jeffkit."
-"info\">AutoForms</a>提供技术支持。</p>\n"
+"    <p>本表单由<a href=\"http://autoforms.sandbox.jeffkit.info\">AutoForms</"
+"a>提供技术支持。</p>\n"
 
 #: templates/autoforms/admin/form_data.html:7
 #: templates/autoforms/admin/form_preview.html:13
@@ -401,3 +405,8 @@ msgstr "首页"
 #: templates/autoforms/admin/form_data.html:21
 msgid "Export"
 msgstr "导出"
+
+#: templates/autoforms/admin/form_embed.html:6
+#, python-format
+msgid "Copy Html code below,Embed %(form)s to other sites."
+msgstr "通过制下面的HTML代码，可把%(form)s嵌入到其他站点页面中。"

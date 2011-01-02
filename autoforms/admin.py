@@ -7,6 +7,8 @@ from django.shortcuts import render_to_response,get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.template import loader, Context
+from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
 
 from autoforms import models
 from autoforms import forms
@@ -30,7 +32,13 @@ class FormAdmin(admin.ModelAdmin):
         return render_to_response('autoforms/admin/form_data.html',{'form':form,'title':_('Data of form : %(form_name)s')%{'form_name':form.name}},context_instance = RequestContext(request))
 
     def embed(self,request,id):
-        return HttpResponse('get embed code')
+        form = models.Form.objects.get(pk=id)
+        url = reverse("form-fill",args=[id]) + '?is_popup=true'
+        site = Site.objects.get_current()
+        url = site.domain + url
+        code = '<iframe id="id_%s" name="form_%s" width="100%%" height="500"  frameborder="0" marginheight="0" marginwidth="0" src="%s"></iframe>'%(form.slug,form.slug,url)
+        return render_to_response('autoforms/admin/form_embed.html',{'code':code,'form':form,'is_popup':True,'title':_('Embed code')},
+                context_instance = RequestContext(request))
 
     def export(self,request,id,format='csv'):
         form = models.Form.objects.get(pk=id)
