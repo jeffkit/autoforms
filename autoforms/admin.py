@@ -22,6 +22,11 @@ class FormAdmin(admin.ModelAdmin):
     list_display = ['name','slug','short_desc']
     search_fields = ['name','description']
     inlines = [FieldInline]
+    fieldsets = (
+        ('',{
+            'fields':('name','base','slug','fields','description')
+        }),
+    )
 
     def preview(self,request,id):
         form = models.Form.objects.get(pk=id)
@@ -62,6 +67,17 @@ class FormAdmin(admin.ModelAdmin):
         )
         return form_urls + urls
 
+    def queryset(self,request):
+        qs = super(FormAdmin,self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(user=request.user)
+
+    def save_model(self,request,obj,form,change):
+        if getattr(obj,'user',None) is None:
+            obj.user = request.user
+        obj.save()
+
 admin.site.register(models.Form,FormAdmin)
 
 class ErrorMessageInline(admin.TabularInline):
@@ -70,10 +86,8 @@ class ErrorMessageInline(admin.TabularInline):
 
 class FieldAdmin(admin.ModelAdmin):
     list_display = ['form','name','label','type','required','order',]
-    list_filter = ['form']
-    search_fields = ['name','label','description','help_text']
+    search_fields = ['form__name','name','label','description','help_text']
     inlines = [ErrorMessageInline]
-    list_editable = ['order']
 
     fieldsets = (
         (u'基础信息',{
@@ -84,5 +98,11 @@ class FieldAdmin(admin.ModelAdmin):
             'fields':('localize','initial','widget','validators','datasource','extends','description')
         })
         )
+
+    def queryset(self,request):
+        qs = super(FieldAdmin,self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(form__in = request.user.form_set.all())
 
 admin.site.register(models.Field,FieldAdmin)
