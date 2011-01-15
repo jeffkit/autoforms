@@ -46,8 +46,5 @@ def fill(request,id,template='autoforms/fill.html',success_template='autoforms/f
         else:
             return render_to_response(template,{'title':form.name,'is_popup':is_popup,'form':form,'dform':dform},context_instance=RequestContext(request))
 
-def overview(request,id,template='autoforms/overview.html'):
-    dform = get_object_or_404(Form,pk=id)
-    return render_to_response(template,{'dform':dform},context_instance=RequestContext(request))
 
 
