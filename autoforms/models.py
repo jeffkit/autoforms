@@ -60,6 +60,7 @@ class Form(models.Model):
     base = models.ForeignKey('self',verbose_name=_('Form.base'),blank=True,null=True)
     fields = models.TextField(_('Form.fields'),help_text=_('set the display fields,separate with comma'),blank=True,null=True)
     description = models.TextField(_('Form.description'))
+    enable = models.BooleanField(_('Form.enable'),default=True)
     user = models.ForeignKey(User,verbose_name=_('user'),blank=True,null=True)
 
     def short_desc(self):

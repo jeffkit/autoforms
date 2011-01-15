@@ -40,8 +40,10 @@ def fill(request,id,template='autoforms/fill.html',success_template='autoforms/f
     else:
         dform = AutoForm(fields=form.sorted_fields(),data=request.POST)
         if dform.is_valid():
-            fi = FormInstance(_form=form,_name=form.name)
-            fi.save(data=dform.cleaned_data)
+            if form.enable:
+                # save the data only form is enable
+                fi = FormInstance(_form=form,_name=form.name)
+                fi.save(data=dform.cleaned_data)
             return render_to_response(success_template,{'title':form.name,'is_popup':is_popup,'form':form,'dform':dform},context_instance=RequestContext(request))
         else:
             return render_to_response(template,{'title':form.name,'is_popup':is_popup,'form':form,'dform':dform},context_instance=RequestContext(request))

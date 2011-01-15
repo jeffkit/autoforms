@@ -24,7 +24,7 @@ class FormAdmin(admin.ModelAdmin):
     inlines = [FieldInline]
     fieldsets = (
         ('',{
-            'fields':('name','base','slug','fields','description')
+            'fields':('name','base','slug','fields','description','enable')
         }),
     )
 

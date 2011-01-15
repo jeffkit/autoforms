@@ -13,6 +13,9 @@ padding: 0px;
 position: relative;
 width: 100%;
 }
+.disable {
+color:red;
+}
 </style>
 {%endif%}
 {%endblock%}
@@ -25,7 +28,11 @@ width: 100%;
         <input type="hidden" name="is_popup" value="{{is_popup}}"/>
         {% include 'autoforms/fields.html' %}
     </fieldset>
-    <input type="submit" value="{%trans 'Submit'%}"/>
+    {% if form.enable %}
+        <input type="submit" value="{%trans 'Submit'%}"/>
+    {% else %}
+    <p class="disable">{% trans 'The form was disabled,you can not submit the form now.' %}</p>
+    {% endif %}
 </div>
 </form>
 </div>
