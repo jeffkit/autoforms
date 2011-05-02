@@ -214,7 +214,7 @@ class Option(models.Model):
     def __unicode__(self):
         return self.label
 
-    def Meta:
+    class Meta:
         verbose_name = _('Option')
         verbose_name_plural = _('Options')
 

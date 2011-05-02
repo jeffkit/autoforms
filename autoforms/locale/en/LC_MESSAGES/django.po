@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-15 12:52+0800\n"
+"POT-Creation-Date: 2011-05-02 13:15+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: jeff.kit <jeff@fallever.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,75 +29,63 @@ msgstr "Data of form : %(form_name)s"
 msgid "Embed code"
 msgstr "Embed code"
 
-#: models.py:11
-msgid "boolean"
-msgstr "boolean"
+#: admin.py:103
+msgid "basic info"
+msgstr "basic info"
 
-#: models.py:12
+#: admin.py:106
+msgid "advantage settings"
+msgstr "advantage settings"
+
+#: models.py:11
 msgid "char"
 msgstr "char"
+
+#: models.py:12
+msgid "boolean"
+msgstr "boolean"
 
 #: models.py:13
 msgid "choice"
 msgstr "choice"
 
-#: models.py:14 models.py:40
-msgid "date"
-msgstr "date"
-
-#: models.py:15 models.py:41
-msgid "datetime"
-msgstr "datetime"
-
-#: models.py:16
-msgid "decimal"
-msgstr "decimal"
-
-#: models.py:17
-msgid "email"
-msgstr "email"
-
-#: models.py:18 models.py:39
-msgid "file"
-msgstr "file"
-
-#: models.py:19
-msgid "float"
-msgstr "float"
-
-#: models.py:20
-msgid "filepath"
-msgstr "filepath"
-
-#: models.py:21
-msgid "image"
-msgstr "image"
-
-#: models.py:22
-msgid "integer"
-msgstr "integer"
-
-#: models.py:23
-msgid "ipaddress"
-msgstr "ip"
-
-#: models.py:24
+#: models.py:14
 msgid "mulitpleChoice"
 msgstr "mulitpleChoice"
 
-#: models.py:25 models.py:46
-msgid "nullBoolean"
-msgstr "nullBoolean"
+#: models.py:15 models.py:41
+msgid "date"
+msgstr "date"
 
-#: models.py:26
-msgid "regex"
-msgstr "regex"
+#: models.py:16 models.py:42
+msgid "datetime"
+msgstr "datetime"
+
+#: models.py:17
+msgid "decimal"
+msgstr "decimal"
+
+#: models.py:18
+msgid "email"
+msgstr "email"
+
+#: models.py:20
+msgid "float"
+msgstr "float"
+
+#: models.py:23
+msgid "integer"
+msgstr "integer"
+
+#: models.py:24
+msgid "ipaddress"
+msgstr "ip"
 
 #: models.py:27
 msgid "slug"
 msgstr "slug"
 
-#: models.py:28 models.py:42
+#: models.py:28 models.py:43
 msgid "time"
 msgstr "time"
 
@@ -105,37 +93,29 @@ msgstr "time"
 msgid "url"
 msgstr "url"
 
-#: models.py:30
-msgid "modelChoice"
-msgstr "modelChoice"
-
-#: models.py:31
-msgid "modelMultipleChoice"
-msgstr "modelMultipleChoice"
-
 #: models.py:35
 msgid "text"
 msgstr "text"
 
 #: models.py:36
-msgid "password"
-msgstr "password"
-
-#: models.py:37
-msgid "hidden"
-msgstr "hidden"
-
-#: models.py:38
-msgid "multipleHidden"
-msgstr "multipleHidden"
-
-#: models.py:43
 msgid "textarea"
 msgstr "textarea"
 
+#: models.py:37
+msgid "password"
+msgstr "password"
+
+#: models.py:38
+msgid "hidden"
+msgstr "hidden"
+
+#: models.py:39
+msgid "multipleHidden"
+msgstr "multipleHidden"
+
 #: models.py:44
-msgid "checkbox"
-msgstr "checkbox"
+msgid "radio"
+msgstr "radio"
 
 #: models.py:45
 msgid "select"
@@ -146,8 +126,8 @@ msgid "selectMultiple"
 msgstr "selectMultiple"
 
 #: models.py:48
-msgid "radio"
-msgstr "radio"
+msgid "checkbox"
+msgstr "checkbox"
 
 #: models.py:49
 msgid "checkboxMultiple"
@@ -193,163 +173,183 @@ msgstr "user"
 msgid "description"
 msgstr "description"
 
-#: models.py:169
+#: models.py:173
 msgid "form"
 msgstr "form"
 
-#: models.py:170
+#: models.py:174
 msgid "forms"
 msgstr "forms"
 
-#: models.py:179
+#: models.py:183
 msgid "Field.form"
 msgstr "form"
 
-#: models.py:180
+#: models.py:184
 msgid "Field.name"
 msgstr "name"
 
-#: models.py:180
+#: models.py:184
 msgid "leters,digits,underline are allowed."
 msgstr "leters,digits,underline are allowed"
 
-#: models.py:181
+#: models.py:185
 msgid "Field.label"
 msgstr "label"
 
-#: models.py:181
+#: models.py:185
 msgid "a friendly field label"
 msgstr "a friendly label for this field"
 
-#: models.py:182
+#: models.py:186
 msgid "Field.required"
 msgstr "required"
 
-#: models.py:182
+#: models.py:186
 msgid "is it required?"
 msgstr "is this field required?"
 
-#: models.py:183
+#: models.py:187
 msgid "Field.type"
 msgstr "type"
 
-#: models.py:184
+#: models.py:188
 msgid "Field.help_text"
 msgstr "help_text"
 
-#: models.py:185
+#: models.py:189
 msgid "Field.widget"
 msgstr "widget"
 
-#: models.py:186
+#: models.py:190
 msgid "Field.initial"
 msgstr "initial"
 
-#: models.py:187
+#: models.py:191
 msgid "Field.validators"
 msgstr "validators"
 
-#: models.py:187
+#: models.py:191
 msgid "validator names,separate with space"
 msgstr "validator names,separate with space"
 
-#: models.py:188
+#: models.py:192
 msgid "Field.localize"
 msgstr "localize"
 
-#: models.py:189
+#: models.py:193
 msgid "Field.order"
 msgstr "order"
 
-#: models.py:190
+#: models.py:194
 msgid "Field.description"
 msgstr "description"
 
-#: models.py:191
+#: models.py:195
 msgid "Field.datasource"
 msgstr "datasource"
 
-#: models.py:191
+#: models.py:195
 msgid "select a datasource for the choice field"
 msgstr "select a datasource for the choice field"
 
-#: models.py:192
+#: models.py:196
 msgid "Field.extends"
 msgstr "extends"
 
-#: models.py:192
+#: models.py:196
 msgid "other parameters,such as widget parameters,use a json dictionary"
 msgstr "other parameters,such as widget parameters,use a json dictionary"
 
-#: models.py:193
+#: models.py:197
 msgid "Field.enable"
 msgstr "enable"
 
-#: models.py:196
+#: models.py:200
 msgid "Field"
 msgstr "Field"
 
-#: models.py:197
+#: models.py:201
 msgid "Fields"
 msgstr "Fields"
 
-#: models.py:206
+#: models.py:210
+msgid "Option.field"
+msgstr "field"
+
+#: models.py:211
+msgid "Option.value"
+msgstr "value"
+
+#: models.py:212
+msgid "Option.label"
+msgstr "label"
+
+#: models.py:218
+msgid "Option"
+msgstr "Option"
+
+#: models.py:219
+msgid "Options"
+msgstr "Options"
+
+#: models.py:226
 msgid "ErrorMessage.field"
 msgstr "field"
 
-#: models.py:207
+#: models.py:227
 msgid "ErrorMessage.type"
 msgstr "type"
 
-#: models.py:208
+#: models.py:228
 msgid "ErrorMessage.message"
 msgstr "message"
 
-#: models.py:211
+#: models.py:231
 msgid "ErrorMessage"
 msgstr "ErrorMessage"
 
-#: models.py:212
+#: models.py:232
 msgid "ErrorMessages"
 msgstr "ErrorMessages"
 
-#: models.py:224
+#: models.py:244
 msgid "FormInstance.form"
 msgstr "form"
 
-#: models.py:225
+#: models.py:245
 msgid "FormInstance.name"
 msgstr "name"
 
-#: models.py:226
+#: models.py:246
 msgid "FormInstance.create_at"
 msgstr "create_at"
 
-#: models.py:252
+#: models.py:272
 msgid "FormInstance"
 msgstr "FormInstance"
 
-#: models.py:253
+#: models.py:273
 msgid "FormInstances"
 msgstr "FormInstances"
 
-#: models.py:260
+#: models.py:280
 msgid "FieldValue.form"
 msgstr "form"
 
-#: models.py:261
+#: models.py:281
 msgid "FieldValue.name"
 msgstr "name"
 
-#: models.py:262
+#: models.py:282
 msgid "FieldValue.value"
 msgstr "value"
 
-#: models.py:265
+#: models.py:285
 msgid "FieldValue"
 msgstr "FieldValue"
 
-#: models.py:266
+#: models.py:286
 msgid "FieldValues"
 msgstr "FieldValues"
 
@@ -422,3 +422,24 @@ msgstr "Export"
 #, python-format
 msgid "Copy Html code below,Embed %(form)s to other sites."
 msgstr "Copy Html code below,Embed %(form)s to other sites."
+
+#~ msgid "file"
+#~ msgstr "file"
+
+#~ msgid "filepath"
+#~ msgstr "filepath"
+
+#~ msgid "image"
+#~ msgstr "image"
+
+#~ msgid "nullBoolean"
+#~ msgstr "nullBoolean"
+
+#~ msgid "regex"
+#~ msgstr "regex"
+
+#~ msgid "modelChoice"
+#~ msgstr "modelChoice"
+
+#~ msgid "modelMultipleChoice"
+#~ msgstr "modelMultipleChoice"

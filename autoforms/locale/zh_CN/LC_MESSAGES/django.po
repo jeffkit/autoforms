@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-15 12:52+0800\n"
+"POT-Creation-Date: 2011-05-02 13:15+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: jeff.kit <jeff@fallever.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,75 +29,63 @@ msgstr "浏览表单数据： %(form_name)s"
 msgid "Embed code"
 msgstr "嵌入代码"
 
-#: models.py:11
-msgid "boolean"
-msgstr "布尔值"
+#: admin.py:103
+msgid "basic info"
+msgstr "基础信息"
 
-#: models.py:12
+#: admin.py:106
+msgid "advantage settings"
+msgstr "高级设置"
+
+#: models.py:11
 msgid "char"
 msgstr "文本"
+
+#: models.py:12
+msgid "boolean"
+msgstr "布尔值"
 
 #: models.py:13
 msgid "choice"
 msgstr "选项"
 
-#: models.py:14 models.py:40
-msgid "date"
-msgstr "日期"
-
-#: models.py:15 models.py:41
-msgid "datetime"
-msgstr "日期时间"
-
-#: models.py:16
-msgid "decimal"
-msgstr "小数"
-
-#: models.py:17
-msgid "email"
-msgstr "Email"
-
-#: models.py:18 models.py:39
-msgid "file"
-msgstr "文件"
-
-#: models.py:19
-msgid "float"
-msgstr "浮点数"
-
-#: models.py:20
-msgid "filepath"
-msgstr "文件路径"
-
-#: models.py:21
-msgid "image"
-msgstr "图片"
-
-#: models.py:22
-msgid "integer"
-msgstr "整数"
-
-#: models.py:23
-msgid "ipaddress"
-msgstr "IP地址"
-
-#: models.py:24
+#: models.py:14
 msgid "mulitpleChoice"
 msgstr "多选值"
 
-#: models.py:25 models.py:46
-msgid "nullBoolean"
-msgstr "空布尔值"
+#: models.py:15 models.py:41
+msgid "date"
+msgstr "日期"
 
-#: models.py:26
-msgid "regex"
-msgstr "正则表达式"
+#: models.py:16 models.py:42
+msgid "datetime"
+msgstr "日期时间"
+
+#: models.py:17
+msgid "decimal"
+msgstr "小数"
+
+#: models.py:18
+msgid "email"
+msgstr "Email"
+
+#: models.py:20
+msgid "float"
+msgstr "浮点数"
+
+#: models.py:23
+msgid "integer"
+msgstr "整数"
+
+#: models.py:24
+msgid "ipaddress"
+msgstr "IP地址"
 
 #: models.py:27
 msgid "slug"
 msgstr "标识"
 
-#: models.py:28 models.py:42
+#: models.py:28 models.py:43
 msgid "time"
 msgstr "时间"
 
@@ -105,37 +93,29 @@ msgstr "时间"
 msgid "url"
 msgstr "网址"
 
-#: models.py:30
-msgid "modelChoice"
-msgstr "数据表纪录"
-
-#: models.py:31
-msgid "modelMultipleChoice"
-msgstr "数据表纪录（多选）"
-
 #: models.py:35
 msgid "text"
 msgstr "文本框"
 
 #: models.py:36
-msgid "password"
-msgstr "密码输入框"
-
-#: models.py:37
-msgid "hidden"
-msgstr "隐藏域"
-
-#: models.py:38
-msgid "multipleHidden"
-msgstr "多隐藏域"
-
-#: models.py:43
 msgid "textarea"
 msgstr "文本域"
 
+#: models.py:37
+msgid "password"
+msgstr "密码输入框"
+
+#: models.py:38
+msgid "hidden"
+msgstr "隐藏域"
+
+#: models.py:39
+msgid "multipleHidden"
+msgstr "多隐藏域"
+
 #: models.py:44
-msgid "checkbox"
-msgstr "单选框（CheckBox)"
+msgid "radio"
+msgstr "单选框（Radio）"
 
 #: models.py:45
 msgid "select"
@@ -146,8 +126,8 @@ msgid "selectMultiple"
 msgstr "下拉框（多选）"
 
 #: models.py:48
-msgid "radio"
-msgstr "单选框（Radio）"
+msgid "checkbox"
+msgstr "单选框（CheckBox)"
 
 #: models.py:49
 msgid "checkboxMultiple"
@@ -193,163 +173,183 @@ msgstr "用户"
 msgid "description"
 msgstr "描述"
 
-#: models.py:169
+#: models.py:173
 msgid "form"
 msgstr "表单"
 
-#: models.py:170
+#: models.py:174
 msgid "forms"
 msgstr "表单"
 
-#: models.py:179
+#: models.py:183
 msgid "Field.form"
 msgstr "表单"
 
-#: models.py:180
+#: models.py:184
 msgid "Field.name"
 msgstr "字段名"
 
-#: models.py:180
+#: models.py:184
 msgid "leters,digits,underline are allowed."
 msgstr "可使用英文字母、数字及下划线"
 
-#: models.py:181
+#: models.py:185
 msgid "Field.label"
 msgstr "标签"
 
-#: models.py:181
+#: models.py:185
 msgid "a friendly field label"
 msgstr "对用户友好的表单域名称"
 
-#: models.py:182
+#: models.py:186
 msgid "Field.required"
 msgstr "必填"
 
-#: models.py:182
+#: models.py:186
 msgid "is it required?"
 msgstr "该域是否必填"
 
-#: models.py:183
+#: models.py:187
 msgid "Field.type"
 msgstr "类型"
 
-#: models.py:184
+#: models.py:188
 msgid "Field.help_text"
 msgstr "帮助文本"
 
-#: models.py:185
+#: models.py:189
 msgid "Field.widget"
 msgstr "组件"
 
-#: models.py:186
+#: models.py:190
 msgid "Field.initial"
 msgstr "初始值"
 
-#: models.py:187
+#: models.py:191
 msgid "Field.validators"
 msgstr "检验器"
 
-#: models.py:187
+#: models.py:191
 msgid "validator names,separate with space"
 msgstr "输入字段校验器的名称，以空格隔开"
 
-#: models.py:188
+#: models.py:192
 msgid "Field.localize"
 msgstr "本地化"
 
-#: models.py:189
+#: models.py:193
 msgid "Field.order"
 msgstr "排列顺序"
 
-#: models.py:190
+#: models.py:194
 msgid "Field.description"
 msgstr "说明"
 
-#: models.py:191
+#: models.py:195
 msgid "Field.datasource"
 msgstr "数据源"
 
-#: models.py:191
+#: models.py:195
 msgid "select a datasource for the choice field"
 msgstr "选择数据源，仅当字段类型为‘数据表纪录’时有效"
 
-#: models.py:192
+#: models.py:196
 msgid "Field.extends"
 msgstr "扩展"
 
-#: models.py:192
+#: models.py:196
 msgid "other parameters,such as widget parameters,use a json dictionary"
 msgstr "其他参数或下拉列表选项等，请使用json格式的数据填充"
 
-#: models.py:193
+#: models.py:197
 msgid "Field.enable"
 msgstr "可用"
 
-#: models.py:196
+#: models.py:200
 msgid "Field"
 msgstr "表单域"
 
-#: models.py:197
+#: models.py:201
 msgid "Fields"
 msgstr "表单域"
 
-#: models.py:206
+#: models.py:210
+msgid "Option.field"
+msgstr "表单域"
+
+#: models.py:211
+msgid "Option.value"
+msgstr "选项值"
+
+#: models.py:212
+msgid "Option.label"
+msgstr "选项标签"
+
+#: models.py:218
+msgid "Option"
+msgstr "选项"
+
+#: models.py:219
+msgid "Options"
+msgstr "选项"
+
+#: models.py:226
 msgid "ErrorMessage.field"
 msgstr "表单域"
 
-#: models.py:207
+#: models.py:227
 msgid "ErrorMessage.type"
 msgstr "校验类型"
 
-#: models.py:208
+#: models.py:228
 msgid "ErrorMessage.message"
 msgstr "错误信息"
 
-#: models.py:211
+#: models.py:231
 msgid "ErrorMessage"
 msgstr "错误信息"
 
-#: models.py:212
+#: models.py:232
 msgid "ErrorMessages"
 msgstr "错误信息"
 
-#: models.py:224
+#: models.py:244
 msgid "FormInstance.form"
 msgstr "表单"
 
-#: models.py:225
+#: models.py:245
 msgid "FormInstance.name"
 msgstr "名称"
 
-#: models.py:226
+#: models.py:246
 msgid "FormInstance.create_at"
 msgstr "创建时间"
 
-#: models.py:252
+#: models.py:272
 msgid "FormInstance"
 msgstr "表单纪录"
 
-#: models.py:253
+#: models.py:273
 msgid "FormInstances"
 msgstr "表单纪录"
 
-#: models.py:260
+#: models.py:280
 msgid "FieldValue.form"
 msgstr "表单"
 
-#: models.py:261
+#: models.py:281
 msgid "FieldValue.name"
 msgstr "字段名"
 
-#: models.py:262
+#: models.py:282
 msgid "FieldValue.value"
 msgstr "字段值"
 
-#: models.py:265
+#: models.py:285
 msgid "FieldValue"
 msgstr "字段值"
 
-#: models.py:266
+#: models.py:286
 msgid "FieldValues"
 msgstr "字段值"
 
@@ -422,3 +422,24 @@ msgstr "导出"
 #, python-format
 msgid "Copy Html code below,Embed %(form)s to other sites."
 msgstr "通过制下面的HTML代码，可把%(form)s嵌入到其他站点页面中。"
+
+#~ msgid "file"
+#~ msgstr "文件"
+
+#~ msgid "filepath"
+#~ msgstr "文件路径"
+
+#~ msgid "image"
+#~ msgstr "图片"
+
+#~ msgid "nullBoolean"
+#~ msgstr "空布尔值"
+
+#~ msgid "regex"
+#~ msgstr "正则表达式"
+
+#~ msgid "modelChoice"
+#~ msgstr "数据表纪录"
+
+#~ msgid "modelMultipleChoice"
+#~ msgstr "数据表纪录（多选）"
