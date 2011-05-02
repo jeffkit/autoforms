@@ -8,44 +8,44 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
 field_types = (
-    ('boolean',_('boolean')),
     ('char',_('char')),
+    ('boolean',_('boolean')),
     ('choice',_('choice')),
+    ('multipleChoice',_('mulitpleChoice')),
     ('date',_('date')),
     ('datetime',_('datetime')),
     ('decimal',_('decimal')),
     ('email',_('email')),
-    ('file',_('file')),
+    #('file',_('file')),
     ('float',_('float')),
-    ('filepath',_('filepath')),
-    ('image',_('image')),
+    #('filepath',_('filepath')),
+    #('image',_('image')),
     ('integer',_('integer')),
     ('ipadress',_('ipaddress')),
-    ('multipleChoice',_('mulitpleChoice')),
-    ('nullBoolean',_('nullBoolean')),
-    ('regex',_('regex')),
+    #('nullBoolean',_('nullBoolean')),
+    #('regex',_('regex')),
     ('slug',_('slug')),
     ('time',_('time')),
     ('url',_('url')),
-    ('modelChoice',_('modelChoice')),
-    ('modelMultipleChoice',_('modelMultipleChoice')),
+    #('modelChoice',_('modelChoice')),
+    #('modelMultipleChoice',_('modelMultipleChoice')),
 )
 
 widget_types = (
     ('text',_('text')),
+    ('textarea',_('textarea')),
     ('password',_('password')),
     ('hidden',_('hidden')),
     ('multipleHidden',_('multipleHidden')),
-    ('file',_('file')),
+    #('file',_('file')),
     ('date',_('date')),
     ('datetime',_('datetime')),
     ('time',_('time')),
-    ('textarea',_('textarea')),
-    ('checkbox',_('checkbox')),
-    ('select',_('select')),
-    ('nullBoolean',_('nullBoolean')),
-    ('selectMultiple',_('selectMultiple')),
     ('radio',_('radio')),
+    ('select',_('select')),
+    #('nullBoolean',_('nullBoolean')),
+    ('selectMultiple',_('selectMultiple')),
+    ('checkbox',_('checkbox')),
     ('checkboxMultiple',_('checkboxMultiple')),
 )
 
@@ -202,6 +202,22 @@ class Field(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class Option(models.Model):
+    """
+    Options for Choice.
+    """
+    field = models.ForeignKey(Field,verbose_name=_('Option.field'))
+    value = models.CharField(_('Option.value'),max_length=100)
+    label = models.CharField(_('Option.label'),max_length=100)
+
+    def __unicode__(self):
+        return self.label
+
+    class Meta:
+        verbose_name = _('Option')
+        verbose_name_plural = _('Options')
+
 
 class ErrorMessage(models.Model):
     """

@@ -79,8 +79,9 @@ class FormAdmin(admin.ModelAdmin):
         obj.save()
 
     def formfield_for_foreignkey(self,db_field,request,**kwargs):
-        if db_field.name == 'base':
-            kwargs['queryset'] = models.Form.objects.filter(user=request.user)
+        if not request.user.is_superuser:
+            if db_field.name == 'base':
+                kwargs['queryset'] = models.Form.objects.filter(user=request.user)
         return super(FormAdmin,self).formfield_for_foreignkey(db_field,request,**kwargs)
 
 admin.site.register(models.Form,FormAdmin)
@@ -89,20 +90,30 @@ class ErrorMessageInline(admin.TabularInline):
     model = models.ErrorMessage
     template = 'autoforms/field_tabular.html'
 
+class OptionInline(admin.TabularInline):
+    model = models.Option
+    template = 'autoforms/field_tabular.html'
+
 class FieldAdmin(admin.ModelAdmin):
     list_display = ['form','name','label','type','required','order',]
     search_fields = ['form__name','name','label','description','help_text']
-    inlines = [ErrorMessageInline]
+    inlines = [OptionInline,ErrorMessageInline]
 
     fieldsets = (
-        (u'基础信息',{
-            'fields':('form','type','required','order','name','label','help_text')
+        (_('basic info'),{
+            'fields':('form','type','widget','required','order','name','label','initial','help_text')
         }),
-        (u'高级设置',{
+        (_('advantage settings'),{
             'classes': ('collapse',),
-            'fields':('localize','initial','widget','validators','datasource','extends','description')
+            'fields':('localize','extends','description')
         })
         )
+
+    def formfield_for_foreignkey(self,db_field,request,**kwargs):
+        if not request.user.is_superuser:
+            if db_field.name == 'form':
+                kwargs['queryset'] = models.Form.objects.filter(form__user=request.user)
+        return super(FieldAdmin,self).formfield_for_foreignkey(db_field,request,**kwargs)
 
     def queryset(self,request):
         qs = super(FieldAdmin,self).queryset(request)

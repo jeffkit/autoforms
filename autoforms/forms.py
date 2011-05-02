@@ -91,6 +91,15 @@ class AutoForm(forms.Form):
                 else:
                     raise ValueError,u'%s need a datasource!'%field.name
 
+            if field.type in ['choice','multipleChoice']:
+                choices = []
+                if kwargs.get('choices',None):
+                    choices += kwargs['choices']
+                for option in field.option_set.all():
+                    choices.append((option.value,option.label))
+
+                kwargs['choices'] = choices
+
             else:
                 required_arguments = field_required_arguments.get(field.type,None)
                 if required_arguments:
