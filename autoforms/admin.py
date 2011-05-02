@@ -78,6 +78,11 @@ class FormAdmin(admin.ModelAdmin):
             obj.user = request.user
         obj.save()
 
+    def formfield_for_foreignkey(self,db_field,request,**kwargs):
+        if db_field.name == 'base':
+            kwargs['queryset'] = models.Form.objects.filter(user=request.user)
+        return super(FormAdmin,self).formfield_for_foreignkey(db_field,request,**kwargs)
+
 admin.site.register(models.Form,FormAdmin)
 
 class ErrorMessageInline(admin.TabularInline):
