@@ -24,7 +24,7 @@ class FormAdmin(admin.ModelAdmin):
     inlines = [FieldInline]
     fieldsets = (
         ('',{
-            'fields':('name','base','slug','fields','description')
+            'fields':('name','base','slug','description','enable')
         }),
     )
 
@@ -38,9 +38,11 @@ class FormAdmin(admin.ModelAdmin):
 
     def embed(self,request,id):
         form = models.Form.objects.get(pk=id)
-        url = reverse("form-fill",args=[id]) + '?is_popup=true'
+        url = reverse("form-fill",args=[form.user.username,form.slug])
         site = Site.objects.get_current()
         url = site.domain + url
+        if not url.startswith('http://'):
+            url = 'http://' + url
         code = '<iframe id="id_%s" name="form_%s" width="100%%" height="500"  frameborder="0" marginheight="0" marginwidth="0" src="%s"></iframe>'%(form.slug,form.slug,url)
         return render_to_response('autoforms/admin/form_embed.html',{'code':code,'form':form,'is_popup':True,'title':_('Embed code')},
                 context_instance = RequestContext(request))
@@ -78,26 +80,42 @@ class FormAdmin(admin.ModelAdmin):
             obj.user = request.user
         obj.save()
 
+    def formfield_for_foreignkey(self,db_field,request,**kwargs):
+        if not request.user.is_superuser:
+            if db_field.name == 'base':
+                kwargs['queryset'] = models.Form.objects.filter(user=request.user)
+        return super(FormAdmin,self).formfield_for_foreignkey(db_field,request,**kwargs)
+
 admin.site.register(models.Form,FormAdmin)
 
 class ErrorMessageInline(admin.TabularInline):
     model = models.ErrorMessage
     template = 'autoforms/field_tabular.html'
 
+class OptionInline(admin.TabularInline):
+    model = models.Option
+    template = 'autoforms/field_tabular.html'
+
 class FieldAdmin(admin.ModelAdmin):
-    list_display = ['form','name','label','type','required','order',]
+    list_display = ['label','form','name','type','required','order',]
     search_fields = ['form__name','name','label','description','help_text']
-    inlines = [ErrorMessageInline]
+    inlines = [OptionInline,ErrorMessageInline]
 
     fieldsets = (
-        (u'基础信息',{
-            'fields':('form','type','required','order','name','label','help_text')
+        (_('basic info'),{
+            'fields':('form','type','widget','required','order','name','label','initial','help_text')
         }),
-        (u'高级设置',{
+        (_('advantage settings'),{
             'classes': ('collapse',),
-            'fields':('localize','initial','widget','validators','datasource','extends','description')
+            'fields':('localize','extends','description')
         })
         )
+
+    def formfield_for_foreignkey(self,db_field,request,**kwargs):
+        if not request.user.is_superuser:
+            if db_field.name == 'form':
+                kwargs['queryset'] = models.Form.objects.filter(user=request.user)
+        return super(FieldAdmin,self).formfield_for_foreignkey(db_field,request,**kwargs)
 
     def queryset(self,request):
         qs = super(FieldAdmin,self).queryset(request)

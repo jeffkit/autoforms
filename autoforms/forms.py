@@ -91,6 +91,15 @@ class AutoForm(forms.Form):
                 else:
                     raise ValueError,u'%s need a datasource!'%field.name
 
+            if field.type in ['choice','multipleChoice']:
+                choices = []
+                if kwargs.get('choices',None):
+                    choices += kwargs['choices']
+                for option in field.option_set.all():
+                    choices.append((option.value,option.label))
+
+                kwargs['choices'] = choices
+
             else:
                 required_arguments = field_required_arguments.get(field.type,None)
                 if required_arguments:
@@ -117,4 +126,5 @@ class AutoForm(forms.Form):
 class FieldForm(forms.ModelForm):
     class Meta:
         model = Field
-        fields = ('type','required','order','name','label','help_text')
+        fields = ('type','required','name','label','help_text','order','widget')
+

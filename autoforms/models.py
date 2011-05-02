@@ -6,46 +6,50 @@ from django.db.models.query import QuerySet
 from django.utils import simplejson
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.conf import settings
+from django.core.mail import send_mail
+from signal import form_filled
 
 field_types = (
-    ('boolean',_('boolean')),
     ('char',_('char')),
+    ('boolean',_('boolean')),
     ('choice',_('choice')),
+    ('multipleChoice',_('mulitpleChoice')),
     ('date',_('date')),
     ('datetime',_('datetime')),
     ('decimal',_('decimal')),
     ('email',_('email')),
-    ('file',_('file')),
+    #('file',_('file')),
     ('float',_('float')),
-    ('filepath',_('filepath')),
-    ('image',_('image')),
+    #('filepath',_('filepath')),
+    #('image',_('image')),
     ('integer',_('integer')),
     ('ipadress',_('ipaddress')),
-    ('multipleChoice',_('mulitpleChoice')),
-    ('nullBoolean',_('nullBoolean')),
-    ('regex',_('regex')),
+    #('nullBoolean',_('nullBoolean')),
+    #('regex',_('regex')),
     ('slug',_('slug')),
     ('time',_('time')),
     ('url',_('url')),
-    ('modelChoice',_('modelChoice')),
-    ('modelMultipleChoice',_('modelMultipleChoice')),
+    #('modelChoice',_('modelChoice')),
+    #('modelMultipleChoice',_('modelMultipleChoice')),
 )
 
 widget_types = (
     ('text',_('text')),
+    ('textarea',_('textarea')),
     ('password',_('password')),
     ('hidden',_('hidden')),
     ('multipleHidden',_('multipleHidden')),
-    ('file',_('file')),
+    #('file',_('file')),
     ('date',_('date')),
     ('datetime',_('datetime')),
     ('time',_('time')),
-    ('textarea',_('textarea')),
-    ('checkbox',_('checkbox')),
-    ('select',_('select')),
-    ('nullBoolean',_('nullBoolean')),
-    ('selectMultiple',_('selectMultiple')),
     ('radio',_('radio')),
+    ('select',_('select')),
+    #('nullBoolean',_('nullBoolean')),
+    ('selectMultiple',_('selectMultiple')),
+    ('checkbox',_('checkbox')),
     ('checkboxMultiple',_('checkboxMultiple')),
 )
 
@@ -60,6 +64,7 @@ class Form(models.Model):
     base = models.ForeignKey('self',verbose_name=_('Form.base'),blank=True,null=True)
     fields = models.TextField(_('Form.fields'),help_text=_('set the display fields,separate with comma'),blank=True,null=True)
     description = models.TextField(_('Form.description'))
+    enable = models.BooleanField(_('Form.enable'),default=True)
     user = models.ForeignKey(User,verbose_name=_('user'),blank=True,null=True)
 
     def short_desc(self):
@@ -68,6 +73,10 @@ class Form(models.Model):
         return self.description
 
     short_desc.short_description = _('description')
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('autoforms.views.fill_with_slug',[self.user.username,self.slug])
 
     def persist(self,data):
         """
@@ -198,6 +207,22 @@ class Field(models.Model):
     def __unicode__(self):
         return self.name
 
+class Option(models.Model):
+    """
+    Options for Choice.
+    """
+    field = models.ForeignKey(Field,verbose_name=_('Option.field'))
+    value = models.CharField(_('Option.value'),max_length=100)
+    label = models.CharField(_('Option.label'),max_length=100)
+
+    def __unicode__(self):
+        return self.label
+
+    class Meta:
+        verbose_name = _('Option')
+        verbose_name_plural = _('Options')
+
+
 class ErrorMessage(models.Model):
     """
     Custom Error Messages
@@ -245,6 +270,7 @@ class FormInstance(models.Model):
                         value = unicode(data[key])
                     field_value = FieldValue(form=self,name=key,value=value)
                     field_value.save()
+        form_filled.send(sender=self.__class__,form=self._form,instance=self)
 
 
     class Meta:
@@ -253,6 +279,12 @@ class FormInstance(models.Model):
 
     def __unicode__(self):
         return self._name
+
+    def summary(self):
+        result = ''
+        for value in self.fieldvalue_set.all():
+            result = result + '%s : %s \n'%(value.name,value.value)
+        return result
 
 
 class FieldValue(models.Model):
@@ -263,3 +295,16 @@ class FieldValue(models.Model):
     class Meta:
         verbose_name = _('FieldValue')
         verbose_name_plural = _('FieldValues')
+
+############ signals ############
+
+def form_fill_notify(sender,form,instance,**kwargs):
+    if settings.NOTIFY_FORM_CHANGE:
+        msg = 'New commit for form "%s":\n%s' %(form.name,instance.summary())
+        send_mail('New commit for form %s'%form.name,msg,
+                'notfiy@jeffkit.info',[form.user.email],fail_silently=True)
+
+
+form_filled.connect(form_fill_notify,sender=FormInstance,dispatch_uid='form_fill_notify')
+
+
