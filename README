@@ -2,7 +2,9 @@
 About autoforms
 ===============
 
-autoForms is a Django application with which you can define&change forms at runtime.
+create by jeffkit (http://jeffkit.info,@jeff_kit)
+
+autoForms is a Django application with which you can create,modify forms in Admin Panel,and then use the form for information collecting.
 
 ------------------
 Who need autoforms
@@ -18,16 +20,40 @@ Who need autoforms
 Links
 -----
 
-`Browser Source on github <https://github.com/jeffkit/autoforms/>`_
+Browser Source on github : https://github.com/jeffkit/autoforms/
 
-`Form Manage Demo (login:form,password:form) <https://autoforms.sandbox.jeffkit.info/admin/autoforms>`_
+Try the Demo (login:form,password:form) : http://f.jeffkit.info/admin/
 
-`Preview predifine Forms <http://autoforms.sandbox.jeffkit.info/preview/>`_
+----------
+how to use
+----------
+
+step1: install 
+
+- use setup tools
+easy_install autoforms
+- install from source
+git clone git@github.com:jeffkit/autoforms.git
+cd autoforms
+python setup.py install
+
+step2: config your django project
+
+edit settings.py , add 'autoforms' to INSTALLED_APPS.
+if you want to receive email when someone submit the form,set NOTIFY_FORM_CHANGE = True and config the send mail staffs.
+
+step3: syncdb
+cd {your project root}
+python manage.py syncdb
+
+step4: done,have fun! go and create your own forms.
 
      
 =================
 欢迎使用AutoForms
 =================
+
+作者 jeffkit (http://jeffkit.info 、@jeff_kit)
 
 AutoForms是一个Django的应用，通过它，你可以通过非编程的手段在程序运行的过程中定义、创建、修改表单甚至保存表单数据。
 
@@ -45,8 +71,32 @@ AutoForms是一个Django的应用，通过它，你可以通过非编程的手�
 链接
 ----
 
-`到github浏览源码 <https://github.com/jeffkit/autoforms/>`_
+到github浏览源码 https://github.com/jeffkit/autoforms/
 
-`表单管理Demo(login:form,password:form) <https://autoforms.sandbox.jeffkit.info/admin/autoforms>`_
+试用(login:form,password:form) http://f.jeffkit.info/admin/>
 
-`预览已定义的表单 <http://autoforms.sandbox.jeffkit.info/preview/>`_
+-------
+如何使用
+-------
+
+第一步：安装
+
+使用setuptools安装：
+easy_install autoforms
+或从源码安装：
+git clone git@github.com:jeffkit/autoforms.git
+cd autoforms
+python setup.py install
+
+第二步：配置
+
+修改项目的settings.py文件，将'autoforms'加入INSTALLED_APPS中。
+如果需要在用户提交表单后接收系统通知，则设置 NOTIFY_FORM_CHANGE = True ，同时设置发送Email的其他参数。
+
+第三步：创建数据表
+cd至你项目的根目录
+python manage.py syncdb
+
+
+第四步： 完成，开始使用吧。
+
