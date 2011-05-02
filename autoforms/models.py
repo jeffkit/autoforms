@@ -70,6 +70,10 @@ class Form(models.Model):
 
     short_desc.short_description = _('description')
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('autoforms.views.fill',[self.user.username,self.slug])
+
     def persist(self,data):
         """
         usage:

@@ -30,8 +30,8 @@ def preview(request,id=None,template='autoforms/preview.html'):
             return render_to_response(template,{'form':form,'dform':dform,'edit':True},context_instance=RequestContext(request))
 
 
-def fill(request,id,template='autoforms/fill.html',success_template='autoforms/fill_done.html'):
-    form = get_object_or_404(Form,pk=id)
+def fill(request,user,slug,template='autoforms/fill.html',success_template='autoforms/fill_done.html'):
+    form = get_object_or_404(Form,user__username=user,slug=slug)
     data = request.GET or request.POST
     is_popup = data.get('is_popup',None)
     if request.method == 'GET':

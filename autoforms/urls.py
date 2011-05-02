@@ -10,5 +10,5 @@ urlpatterns = patterns('',
     (r'^jsi18n/$','autoforms.views.jsi18n'),
 	(r'^preview/$','autoforms.views.preview'),
 	(r'^preview/(?P<id>\d+)/$','autoforms.views.preview'),
-	url(r'^fill/(?P<id>\d+)/$','autoforms.views.fill',name="form-fill"),
+	url(r'^(?P<user>\w+)/(?P<slug>\w+)/$','autoforms.views.fill',name="form-fill"),
 )
