@@ -119,7 +119,7 @@ msgstr "单选框（Radio）"
 
 #: models.py:45
 msgid "select"
-msgstr "下拉框"
+msgstr "下拉框 (select)"
 
 #: models.py:47
 msgid "selectMultiple"
@@ -223,7 +223,7 @@ msgstr "组件"
 
 #: models.py:190
 msgid "Field.initial"
-msgstr "初始值"
+msgstr "默认值"
 
 #: models.py:191
 msgid "Field.validators"

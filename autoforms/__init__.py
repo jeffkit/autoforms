@@ -1,3 +1,3 @@
 #encoding=utf-8
 
-version = '0.3'
+version = '0.4'

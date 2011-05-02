@@ -1,3 +1,10 @@
+V0.4
+1.new url style for form filling page : /user/slug/
+2.Add form_filled signal,and demo by an Email notification.
+3.hide some field types and widget types.
+4.add Option model for choice fields, you don't have to write json string for choice field any more.
+5.Some UE enhancement.
+
 V0.3
 1.A better admin site
 2.Form preview in admin site
