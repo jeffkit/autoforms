@@ -6,6 +6,10 @@ from django.db.models.query import QuerySet
 from django.utils import simplejson
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.conf import settings
+from django.core.mail import send_mail
+from signal import form_filled
 
 field_types = (
     ('char',_('char')),
@@ -266,6 +270,7 @@ class FormInstance(models.Model):
                         value = unicode(data[key])
                     field_value = FieldValue(form=self,name=key,value=value)
                     field_value.save()
+        form_filled.send(sender=self.__class__,form=self._form,instance=self)
 
 
     class Meta:
@@ -274,6 +279,12 @@ class FormInstance(models.Model):
 
     def __unicode__(self):
         return self._name
+
+    def summary(self):
+        result = ''
+        for value in self.fieldvalue_set.all():
+            result = result + '%s : %s \n'%(value.name,value.value)
+        return result
 
 
 class FieldValue(models.Model):
@@ -284,3 +295,16 @@ class FieldValue(models.Model):
     class Meta:
         verbose_name = _('FieldValue')
         verbose_name_plural = _('FieldValues')
+
+############ signals ############
+
+def form_fill_notify(sender,form,instance,**kwargs):
+    if settings.NOTIFY_FORM_CHANGE:
+        msg = 'New commit for form "%s":\n%s' %(form.name,instance.summary())
+        send_mail('New commit for form %s'%form.name,msg,
+                'notfiy@jeffkit.info',[form.user.email],fail_silently=True)
+
+
+form_filled.connect(form_fill_notify,sender=FormInstance,dispatch_uid='form_fill_notify')
+
+
