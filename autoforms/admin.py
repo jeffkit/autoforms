@@ -112,7 +112,7 @@ class FieldAdmin(admin.ModelAdmin):
     def formfield_for_foreignkey(self,db_field,request,**kwargs):
         if not request.user.is_superuser:
             if db_field.name == 'form':
-                kwargs['queryset'] = models.Form.objects.filter(form__user=request.user)
+                kwargs['queryset'] = models.Form.objects.filter(user=request.user)
         return super(FieldAdmin,self).formfield_for_foreignkey(db_field,request,**kwargs)
 
     def queryset(self,request):
