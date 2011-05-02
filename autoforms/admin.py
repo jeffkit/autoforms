@@ -24,7 +24,7 @@ class FormAdmin(admin.ModelAdmin):
     inlines = [FieldInline]
     fieldsets = (
         ('',{
-            'fields':('name','base','slug','fields','description','enable')
+            'fields':('name','base','slug','description','enable')
         }),
     )
 
@@ -95,7 +95,7 @@ class OptionInline(admin.TabularInline):
     template = 'autoforms/field_tabular.html'
 
 class FieldAdmin(admin.ModelAdmin):
-    list_display = ['form','name','label','type','required','order',]
+    list_display = ['label','form','name','type','required','order',]
     search_fields = ['form__name','name','label','description','help_text']
     inlines = [OptionInline,ErrorMessageInline]
 
