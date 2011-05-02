@@ -76,7 +76,7 @@ class Form(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('autoforms.views.fill',[self.user.username,self.slug])
+        return ('autoforms.views.fill_with_slug',[self.user.username,self.slug])
 
     def persist(self,data):
         """
