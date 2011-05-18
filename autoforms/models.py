@@ -296,10 +296,13 @@ class FieldValue(models.Model):
         verbose_name = _('FieldValue')
         verbose_name_plural = _('FieldValues')
 
+    def __unicode__(self):
+        return "%s: %s" % (self.name, self.value)
+
 ############ signals ############
 
 def form_fill_notify(sender,form,instance,**kwargs):
-    if settings.NOTIFY_FORM_CHANGE:
+    if getattr(settings,'NOTIFY_FORM_CHANGE',False):
         msg = 'New commit for form "%s":\n%s' %(form.name,instance.summary())
         send_mail('New commit for form %s'%form.name,msg,
                 'notfiy@jeffkit.info',[form.user.email],fail_silently=True)

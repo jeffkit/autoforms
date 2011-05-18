@@ -11,5 +11,5 @@ urlpatterns = patterns('',
 	(r'^preview/$','autoforms.views.preview'),
 	(r'^preview/(?P<id>\d+)/$','autoforms.views.preview'),
 	url(r'^fill/(?P<id>\d+)/$','autoforms.views.fill_with_id',name="form-fill-old"),
-	url(r'^(?P<user>\w+)/(?P<slug>\w+)/$','autoforms.views.fill_with_slug',name="form-fill"),
+	url(r'^(?P<user>[\w-]+)/(?P<slug>[\w-]+)/$','autoforms.views.fill_with_slug',name="form-fill"),
 )
