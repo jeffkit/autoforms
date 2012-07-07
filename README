@@ -30,8 +30,6 @@ how to use
 
 step1: install 
 
-- use setup tools
-easy_install autoforms
 - install from source
 git clone git@github.com:jeffkit/autoforms.git
 cd autoforms
@@ -39,14 +37,21 @@ python setup.py install
 
 step2: config your django project
 
-edit settings.py , add 'autoforms' to INSTALLED_APPS.
-if you want to receive email when someone submit the form,set NOTIFY_FORM_CHANGE = True and config the send mail staffs.
+edit settings.py , add 'autoforms' 'django.contrib.admin' to INSTALLED_APPS.
+edit urls.py, uncomment admin url configs.
+if you want to receive email when someone submit the form,set
+NOTIFY_FORM_CHANGE = True and config the send mail staffs.
+
+You can also cd to the sample directory, I made a empty project for you:
+cd sample
 
 step3: syncdb
-cd {your project root}
 python manage.py syncdb
 
 step4: done,have fun! go and create your own forms.
+python manage.py runserver
+
+visit: http://localhost:8080/admin
 
      
 =================
@@ -81,8 +86,6 @@ AutoForms是一个Django的应用，通过它，你可以通过非编程的手�
 
 第一步：安装
 
-使用setuptools安装：
-easy_install autoforms
 或从源码安装：
 git clone git@github.com:jeffkit/autoforms.git
 cd autoforms
@@ -93,10 +96,14 @@ python setup.py install
 修改项目的settings.py文件，将'autoforms'加入INSTALLED_APPS中。
 如果需要在用户提交表单后接收系统通知，则设置 NOTIFY_FORM_CHANGE = True ，同时设置发送Email的其他参数。
 
+如果想快速体验，你可以直接使用我为您提供的sample项目。
+cd sample
+
 第三步：创建数据表
-cd至你项目的根目录
 python manage.py syncdb
 
 
 第四步： 完成，开始使用吧。
+python manage.py runserver
+访问http://localhost:8080/admin
 
