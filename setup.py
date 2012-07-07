@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from setuptools import setup
+from setuptools import setup, find_packages
 from autoforms import version
 
 url="http://autoforms.sandbox.jeffkit.info"
@@ -14,6 +14,14 @@ setup(name="autoforms",
       maintainer_email="bbmyth@gmail.com",
       url = url,
       long_description=long_description,
-      packages=['autoforms']
+      packages=find_packages('.'),
+      package_data = {
+        'autoforms': ['templates/autoforms/*.html', 
+	'templates/autoforms/admin/*.*',
+	'templates/admin/autoforms/form/*.html',
+	'locale/en/LC_MESSAGES/django.*',
+	'locale/zh_CN/LC_MESSAGES/django.*'],
+     }
      )
+
 

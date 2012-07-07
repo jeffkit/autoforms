@@ -1,0 +1,7 @@
+*.pyc
+build
+*.db
+*.rdb
+.DS_Store
+autoforms.egg-info
+dist
